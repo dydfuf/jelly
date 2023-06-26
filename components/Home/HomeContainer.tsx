@@ -2,8 +2,9 @@ import { signIn, signOut } from "next-auth/react"
 import React from "react"
 
 export default function HomeContainer() {
-  const handleSignIn = () => {
-    signIn()
+  const handleSignIn = async () => {
+    const s = await signIn()
+    console.log(s)
   }
   const handleSignOut = async () => {
     signOut()
