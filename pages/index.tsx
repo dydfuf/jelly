@@ -1,4 +1,5 @@
 import Head from "next/head"
+import HomeContainer from "components/Home/HomeContainer"
 
 export default function JellyWeb() {
   return (
@@ -6,7 +7,7 @@ export default function JellyWeb() {
       <Head>
         <title>Jelly</title>
       </Head>
-      <main>hello this is Jelly</main>
+      <HomeContainer />
     </>
   )
 }
