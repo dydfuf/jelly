@@ -54,6 +54,6 @@ model VerificationToken {
 }
 
 model Jelly {
-  id          String @id @default(cuid())
-  jelly_name  String
+  id         String @id @default(cuid())
+  jelly_name String
 }
