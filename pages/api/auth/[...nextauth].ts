@@ -25,7 +25,6 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.KAKAO_CLIENT_SECRET,
     }),
   ],
-  callbacks: {},
 }
 
 export default NextAuth(authOptions)
