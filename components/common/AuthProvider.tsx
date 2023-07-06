@@ -6,7 +6,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
 
   return (
     <>
-      {status === "loading" && <div> isLoading ... </div>}
+      {status === "loading" && <div> Login Check ... </div>}
       {status === "authenticated" && children}
     </>
   )
