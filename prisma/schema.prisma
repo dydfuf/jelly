@@ -21,7 +21,6 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  isJellyUser       Boolean @default(false)
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -36,13 +35,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id             String           @id @default(cuid())
+  name           String?
+  email          String?          @unique
+  emailVerified  DateTime?
+  image          String?
+  userHashCode   String?
+  accounts       Account[]
+  sessions       Session[]
+  UserToGroup UserToGroup[]
 }
 
 model VerificationToken {
@@ -53,7 +54,71 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Jelly {
-  id         String @id @default(cuid())
-  jelly_name String
+model UserToGroup {
+  id      String @id @default(cuid())
+  user    User   @relation(fields: [userId], references: [id])
+  group   Group  @relation(fields: [groupId], references: [id])
+  userId  String @unique
+  groupId String
+
+}
+
+model Group {
+  id             String           @id @default(cuid())
+  Memory         Memory[]
+  Schedule       Schedule[]
+  plan           plan[]
+  UserToGroup UserToGroup[]
+}
+
+model Memory {
+  id          String    @id @default(cuid())
+  gGroup      Group     @relation(fields: [groupId], references: [id])
+  groupId     String
+  iimageList  ImageList @relation(fields: [imageListId], references: [id])
+  imageListId String
+  name        String
+  content     String
+  date        DateTime
+}
+
+model Image {
+  id         String    @id @default(cuid())
+  iImageList ImageList @relation(fields: [imageListId], references: [id])
+  imageuri    String
+  imageListId String
+}
+
+model ImageList {
+  id     String   @id @default(cuid())
+  Memory Memory[]
+  Image  Image[]
+}
+
+model Schedule {
+  id                  String            @id @default(cuid())
+  group               Group             @relation(fields: [groupId], references: [id])
+  title               String
+  startDate           DateTime
+  endDate             DateTime
+  content             String
+  recurringSchedule   RecurringSchedule @relation(fields: [recurringScheduleId], references: [id])
+  groupId             String
+  recurringScheduleId String
+}
+
+model RecurringSchedule {
+  id       String     @id @default(cuid())
+  Schedule Schedule[]
+}
+
+model plan {
+  id          String   @id @default(cuid())
+  group       Group    @relation(fields: [groupId], references: [id])
+  title       String
+  startDate   DateTime
+  endDate     DateTime
+  isUndecided Boolean
+  content     String
+  groupId     String
 }

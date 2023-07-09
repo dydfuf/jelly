@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client"
 import NextAuth, { NextAuthOptions } from "next-auth"
 import { Adapter } from "next-auth/adapters"
 import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
 import KakaoProvider from "next-auth/providers/kakao"
 import NaverProvider from "next-auth/providers/naver"
 import { env } from "env.mjs"
@@ -24,8 +25,19 @@ export const authOptions: NextAuthOptions = {
       clientId: env.KAKAO_CLIENT_ID,
       clientSecret: env.KAKAO_CLIENT_SECRET,
     }),
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
-  callbacks: {},
+  callbacks: {
+    async session({ session, user }) {
+      if (session.user) {
+        session.user.id = user.id
+      }
+      return session
+    },
+  },
 }
 
 export default NextAuth(authOptions)
