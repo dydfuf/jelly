@@ -10,38 +10,23 @@ export default function useUser({ id }: Params) {
     enabled: !!id,
   });
 
-  const { data: groupData, isLoading: isGetGroupLoading } = useQuery(["group", id], () => getGroupByUserId(id), {
-    enabled: !!id && !!userData?.data,
-  });
-
-  const isLoading = [isGetUserLoading, isGetGroupLoading].some((x) => x);
+  const isLoading = [isGetUserLoading].some((x) => x);
 
   return {
-    user: userData?.data,
-    group: groupData?.data,
+    user: userData?.data.user,
     isLoading,
   };
 }
 
 interface _User {
-  id: string;
-  name: string;
-  email: string;
-  userHashCode?: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    userHashCode?: string;
+  };
 }
 
 const getUserById = (id: string) => {
   return axios.get<_User>(`/api/user/${id}`);
-};
-
-interface _Group {
-  groupId: string;
-}
-
-const getGroupByUserId = (id: string) => {
-  return axios.get<_Group>(`/api/user/${id}/group`);
-};
-
-const postGroup = (userId: string) => {
-  return axios.post(``);
 };

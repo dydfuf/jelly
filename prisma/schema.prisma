@@ -43,7 +43,7 @@ model User {
   userHashCode   String?
   accounts       Account[]
   sessions       Session[]
-  AccountToGroup AccountToGroup[]
+  UserToGroup UserToGroup[]
 }
 
 model VerificationToken {
@@ -54,12 +54,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model AccountToGroup {
+model UserToGroup {
   id      String @id @default(cuid())
   user    User   @relation(fields: [userId], references: [id])
   group   Group  @relation(fields: [groupId], references: [id])
   userId  String @unique
   groupId String
+
 }
 
 model Group {
@@ -67,7 +68,7 @@ model Group {
   Memory         Memory[]
   Schedule       Schedule[]
   plan           plan[]
-  AccountToGroup AccountToGroup[]
+  UserToGroup UserToGroup[]
 }
 
 model Memory {
