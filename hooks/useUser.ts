@@ -1,16 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
-interface Params {
-  id: string;
-}
+export default function useUser() {
+  const { data } = useSession();
+  const userId = data?.user?.id || "";
 
-export default function useUser({ id }: Params) {
-  const { data: userData, isLoading: isGetUserLoading } = useQuery(["user", id], () => getUserById(id), {
-    enabled: !!id,
+  const { data: userData, isLoading } = useQuery(["user", userId], () => getUserById(userId), {
+    enabled: !!userId,
   });
-
-  const isLoading = [isGetUserLoading].some((x) => x);
 
   return {
     user: userData?.data.user,
