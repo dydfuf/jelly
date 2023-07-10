@@ -1,11 +1,8 @@
-import { useSession } from "next-auth/react";
 import { PropsWithChildren } from "react";
 import useUser from "hooks/useUser";
 
 export default function UserProvider({ children }: PropsWithChildren) {
-  const { data } = useSession();
-
-  const { user, isLoading } = useUser({ id: data?.user?.id || "" });
+  const { user, isLoading } = useUser();
 
   if (isLoading) {
     return <div> Jelly User Check ... </div>;
