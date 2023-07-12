@@ -40,7 +40,6 @@ model User {
   email          String?          @unique
   emailVerified  DateTime?
   image          String?
-  userHashCode   String?
   accounts       Account[]
   sessions       Session[]
   UserToGroup UserToGroup[]

@@ -21,7 +21,6 @@ interface _User {
     id: string;
     name: string;
     email: string;
-    userHashCode?: string;
   };
 }
 
