@@ -1,13 +1,11 @@
-import Head from "next/head"
-import HomeContainer from "components/Home/HomeContainer"
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function JellyWeb() {
-  return (
-    <>
-      <Head>
-        <title>Jelly</title>
-      </Head>
-      <HomeContainer />
-    </>
-  )
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/memory");
+  }, [router]);
+
+  return <></>;
 }

@@ -3,7 +3,7 @@ import React from "react";
 import useGetGroup from "hooks/useGetGroup";
 import useUser from "hooks/useUser";
 
-export default function HomeContainer() {
+export default function SettingsContainer() {
   const handleSignIn = () => {
     signIn();
   };
@@ -16,14 +16,19 @@ export default function HomeContainer() {
 
   return (
     <div className="flex flex-col">
-      <button onClick={handleSignIn}>sign in</button>
-      <button onClick={handleSignOut}>sign out</button>
+      <div className="flex gap-12 h-40">
+        <button className="border-1 bg-slate-300 px-8" onClick={handleSignIn}>
+          sign in
+        </button>
+        <button className="border-1 bg-slate-300 px-8" onClick={handleSignOut}>
+          sign out
+        </button>
+      </div>
       <div>
         <p>User Info</p>
         <p>user id : {user?.id}</p>
         <p>user email : {user?.email}</p>
         <p>user name : {user?.name}</p>
-        <p>user userHashCode : {user?.userHashCode}</p>
       </div>
       <div>
         <p>Gruop Info</p>

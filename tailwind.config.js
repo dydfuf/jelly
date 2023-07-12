@@ -1,7 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { pick, omit } = require("lodash")
-const colors = require("tailwindcss/colors")
-const defaultTheme = require("tailwindcss/defaultTheme")
+const spacing = {};
+const borderWidth = {};
+const borderRadius = {};
+const fontSize = {};
+const lineHeight = {};
+
+for (let i = 0; i <= 1000; i++) {
+  spacing[i] = `${i}px`;
+  borderWidth[i] = `${i}px`;
+  borderRadius[i] = `${i}px`;
+  fontSize[i] = `${i}px`;
+  lineHeight[i] = `${i}px`;
+}
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -66,25 +76,15 @@ module.exports = {
           "Noto Color Emoji",
         ],
       },
-      borderWidth: {
-        DEFAULT: "1px",
-        0: "0",
-        2: "2px",
-        3: "3px",
-        4: "4px",
-        6: "6px",
-        8: "8px",
-      },
-      minHeight: {
-        ...defaultTheme.height,
-      },
-      minWidth: {
-        ...defaultTheme.width,
-      },
+      spacing,
+      borderWidth,
+      borderRadius,
+      fontSize,
+      lineHeight,
     },
   },
   plugins: [],
   future: {
     hoverOnlyWhenSupported: true,
   },
-}
+};

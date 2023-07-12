@@ -1,13 +1,16 @@
-import { AppProps } from "next/app"
-import AppProvider from "components/common/Provider/AppProvider"
-import "../styles/tailwind.css"
+import "../styles/tailwind.css";
+import { AppProps } from "next/app";
+import Layout from "components/common/Layout";
+import AppProvider from "components/common/Provider/AppProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppProvider pageProps={pageProps}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </AppProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
