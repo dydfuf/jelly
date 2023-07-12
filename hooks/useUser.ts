@@ -6,9 +6,13 @@ export default function useUser() {
   const { data } = useSession();
   const userId = data?.user?.id || "";
 
-  const { data: userData, isLoading } = useQuery(["user", userId], () => getUserById(userId), {
-    enabled: !!userId,
-  });
+  const { data: userData, isLoading } = useQuery(
+    ["user", userId],
+    () => getUserById(userId),
+    {
+      enabled: !!userId,
+    }
+  );
 
   return {
     user: userData?.data.user,

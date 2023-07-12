@@ -2,7 +2,8 @@ import { useState } from "react";
 import usePutGroup from "hooks/usePutGroup";
 
 export default function CreateGruopWithUserIdButton() {
-  const { isLoading: isPutGruopLoading, createGroupWithGroupId } = usePutGroup();
+  const { isLoading: isPutGruopLoading, createGroupWithGroupId } =
+    usePutGroup();
 
   const handleCreateWihtGroupIdButtonClick = (groupId: string) => {
     createGroupWithGroupId(groupId);
@@ -19,7 +20,11 @@ export default function CreateGruopWithUserIdButton() {
         onChange={(e) => setInput(e.currentTarget.value)}
       />
       {isPutGruopLoading && <button disabled>참여중</button>}
-      {!isPutGruopLoading && <button onClick={() => handleCreateWihtGroupIdButtonClick(input)}>참여하기</button>}
+      {!isPutGruopLoading && (
+        <button onClick={() => handleCreateWihtGroupIdButtonClick(input)}>
+          참여하기
+        </button>
+      )}
     </>
   );
 }

@@ -7,13 +7,17 @@ export default function usePostgroup() {
   const userId = userData?.user?.id || "";
   const queryCache = useQueryClient();
 
-  const { mutateAsync: createGroup, isLoading } = useMutation(["Create Group", userId], () => postGroup(userId), {
-    onMutate: () => {
-      setTimeout(() => {
-        queryCache.invalidateQueries({ queryKey: ["group", userId] });
-      }, 3000);
-    },
-  });
+  const { mutateAsync: createGroup, isLoading } = useMutation(
+    ["Create Group", userId],
+    () => postGroup(userId),
+    {
+      onMutate: () => {
+        setTimeout(() => {
+          queryCache.invalidateQueries({ queryKey: ["group", userId] });
+        }, 3000);
+      },
+    }
+  );
 
   return { isLoading, createGroup };
 }

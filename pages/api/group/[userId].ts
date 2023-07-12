@@ -3,7 +3,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const client = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const userId = req.query.userId as string;
   if (req.method === "GET") {
     try {
@@ -87,11 +90,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       if (requestedUser) {
         // 요청한 유저가 속한 gruop에 몇명 이 있는지 확인한다.
-        const requestedUserParticipantGruopUserCount = await client.userToGroup.count({
-          where: {
-            groupId: requestedUser?.groupId,
-          },
-        });
+        const requestedUserParticipantGruopUserCount =
+          await client.userToGroup.count({
+            where: {
+              groupId: requestedUser?.groupId,
+            },
+          });
 
         // 요청한 유저가 속한 gruop에 2명 이상이 있다면 이미 gruop이 있는 경우이다.
         if (requestedUserParticipantGruopUserCount >= 2) {
