@@ -6,9 +6,13 @@ export default function useGetGroup() {
   const { data: userData } = useSession();
   const userId = userData?.user?.id || "";
 
-  const { data, isLoading, refetch } = useQuery(["group", userId], () => getGroupByUserId(userId), {
-    enabled: !!userId,
-  });
+  const { data, isLoading, refetch } = useQuery(
+    ["group", userId],
+    () => getGroupByUserId(userId),
+    {
+      enabled: !!userId,
+    }
+  );
 
   return { data: data?.data, isLoading: isLoading, refetch };
 }

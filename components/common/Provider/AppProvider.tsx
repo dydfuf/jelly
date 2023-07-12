@@ -6,7 +6,10 @@ import AuthProvider from "./AuthProvider";
 import GroupProvider from "./GroupProvider";
 import UserProvider from "./UserProvider";
 
-export default function AppProvider({ children, pageProps: { session } }: PropsWithChildren<AppInitialProps>) {
+export default function AppProvider({
+  children,
+  pageProps: { session },
+}: PropsWithChildren<AppInitialProps>) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
