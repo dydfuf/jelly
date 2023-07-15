@@ -1,6 +1,6 @@
-import withBundleAnalyzer from "@next/bundle-analyzer"
-import withPlugins from "next-compose-plugins"
-import { env } from "./env.mjs"
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import withPlugins from "next-compose-plugins";
+import { env } from "./env.mjs";
 
 /**
  * @type {import('next').NextConfig}
@@ -8,8 +8,16 @@ import { env } from "./env.mjs"
 const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
   reactStrictMode: true,
   rewrites() {
-    return [{ source: "/health", destination: "/api/health" }]
+    return [{ source: "/health", destination: "/api/health" }];
   },
-})
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "imagedelivery.net",
+      },
+    ],
+  },
+});
 
-export default config
+export default config;

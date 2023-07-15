@@ -1,17 +1,40 @@
 import * as Form from "@radix-ui/react-form";
+import { FormEvent } from "react";
+import usePostCloudflareImage from "hooks/usePostCloudflareImage";
+import usePostMemory from "hooks/usePostMemory";
 
 export default function MemoryAddContainer() {
+  const { createMemory, isLoading } = usePostMemory();
+  const { uploadImage, isLoading: isUploading } = usePostCloudflareImage();
+
+  // 이미지를 업로드 한다.
+  // 업로드된 이미지 주소리스트를 넘겨준다.
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    const formData = new FormData(event.currentTarget);
+    const uploadedImageUrls = await uploadImage(
+      formData.getAll("photo") as File[]
+    );
+    const s = await createMemory({
+      content: data.content as string,
+      title: data.title as string,
+      date: new Date(data.date as string) as Date,
+      location: data.location as string,
+      uploadedImageUrls,
+    });
+  };
+
   return (
     <>
       <Form.Root
         className="w-full"
         onSubmit={(event) => {
-          const data = Object.fromEntries(new FormData(event.currentTarget));
-
-          console.log({ data });
+          handleSubmit(event);
 
           event.preventDefault();
         }}
+        encType="multipart/form-data"
       >
         <Form.Field className="grid mb-10" name="date">
           <div className="flex items-baseline justify-between">
@@ -65,6 +88,20 @@ export default function MemoryAddContainer() {
             />
           </Form.Control>
         </Form.Field>
+        <Form.Field className="grid mb-10" name="title">
+          <div className="flex items-baseline justify-between">
+            <Form.Label className="leading-35">제목</Form.Label>
+            <Form.Message className="text-12" match="valueMissing">
+              제목을 입력해주세요
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input
+              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+              required
+            />
+          </Form.Control>
+        </Form.Field>
         <Form.Field className="grid mb-10" name="content">
           <div className="flex items-baseline justify-between">
             <Form.Label className="leading-35">내용</Form.Label>
@@ -80,7 +117,9 @@ export default function MemoryAddContainer() {
           </Form.Control>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="border-1 w-full">등록하기</button>
+          <button className="border-1 w-full">
+            {isUploading ? "등록중" : "등록하기"}
+          </button>
         </Form.Submit>
       </Form.Root>
     </>
