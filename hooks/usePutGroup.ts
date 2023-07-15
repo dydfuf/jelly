@@ -22,5 +22,5 @@ export default function usePutGroup() {
 }
 
 const putGroup = (userId: string, groupId: string) => {
-  return axios.put(`/api/group/${userId}`, { groupId });
+  return axios.put(`/api/user/${userId}/group/${groupId}`);
 };

@@ -27,5 +27,5 @@ interface _Group {
 }
 
 const getGroupByUserId = (userId: string) => {
-  return axios.get<_Group>(`/api/group/${userId}`);
+  return axios.get<_Group>(`/api/user/${userId}/group`);
 };

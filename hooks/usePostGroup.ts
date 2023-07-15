@@ -23,5 +23,5 @@ export default function usePostgroup() {
 }
 
 const postGroup = (userId: string) => {
-  return axios.post(`/api/group/${userId}`);
+  return axios.post(`/api/user/${userId}/group`);
 };
