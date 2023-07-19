@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new PrismaClient();
+// const client = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,

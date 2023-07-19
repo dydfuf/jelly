@@ -1,5 +1,4 @@
 import axios from "axios";
-import { times } from "lodash-es";
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "env.mjs";
 
@@ -14,7 +13,7 @@ export default async function handler(
   if (req.method === "POST") {
     const uploadUrls: string[] = [];
 
-    for (const s of new Array(count)) {
+    for (const _ of new Array(count)) {
       const res = await axios(
         `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/images/v2/direct_upload`,
         {

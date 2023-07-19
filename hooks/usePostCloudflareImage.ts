@@ -3,8 +3,10 @@ import axios from "axios";
 import { map } from "lodash-es";
 
 export default function usePostCloudflareImage() {
-  const { mutateAsync: getUploadUrl, isLoading: isGetUploadUrlLoading } =
-    useMutation(["get upload url"], getUploadUrlsApi);
+  const { mutateAsync: getUploadUrl } = useMutation(
+    ["get upload url"],
+    getUploadUrlsApi
+  );
 
   const { mutateAsync: uploadImage, isLoading: isUploadImageLoading } =
     useMutation(["upload cloudflare image"], async (photos: File[]) => {
@@ -23,10 +25,6 @@ export default function usePostCloudflareImage() {
 
       return results;
     });
-
-  const isLoading = [isUploadImageLoading, isGetUploadUrlLoading].every(
-    (x) => x
-  );
 
   return {
     isLoading: isUploadImageLoading,

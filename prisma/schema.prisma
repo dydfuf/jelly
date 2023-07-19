@@ -81,15 +81,16 @@ model Memory {
 }
 
 model Schedule {
-  id                  String            @id @default(cuid())
-  group               Group             @relation(fields: [groupId], references: [id])
+  id                  String             @id @default(cuid())
   title               String
   startDate           DateTime
   endDate             DateTime
   content             String
-  recurringSchedule   RecurringSchedule @relation(fields: [recurringScheduleId], references: [id])
   groupId             String
-  recurringScheduleId String
+  isAllDay            Boolean
+  group               Group              @relation(fields: [groupId], references: [id])
+  recurringScheduleId String?
+  RecurringSchedule   RecurringSchedule? @relation(fields: [recurringScheduleId], references: [id])
 }
 
 model RecurringSchedule {
