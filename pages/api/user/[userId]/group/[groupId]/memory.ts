@@ -10,7 +10,6 @@ export default async function handler(
 ) {
   const userId = req.query.userId as string;
   const groupId = req.query.groupId as string;
-  console.log({ userId, groupId });
 
   if (req.method === "GET") {
     try {

@@ -1,4 +1,5 @@
 import * as Form from "@radix-ui/react-form";
+import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import usePostCloudflareImage from "hooks/usePostCloudflareImage";
 import usePostMemory from "hooks/usePostMemory";
@@ -6,23 +7,28 @@ import usePostMemory from "hooks/usePostMemory";
 export default function MemoryAddContainer() {
   const { createMemory, isLoading } = usePostMemory();
   const { uploadImage, isLoading: isUploading } = usePostCloudflareImage();
+  const router = useRouter();
 
   // 이미지를 업로드 한다.
   // 업로드된 이미지 주소리스트를 넘겨준다.
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     const data = Object.fromEntries(new FormData(event.currentTarget));
     const formData = new FormData(event.currentTarget);
     const uploadedImageUrls = await uploadImage(
       formData.getAll("photo") as File[]
     );
-    const s = await createMemory({
+    await createMemory({
       content: data.content as string,
       title: data.title as string,
       date: new Date(data.date as string) as Date,
       location: data.location as string,
       uploadedImageUrls,
     });
+
+    router.push("/memory");
   };
 
   return (
@@ -118,7 +124,7 @@ export default function MemoryAddContainer() {
         </Form.Field>
         <Form.Submit asChild>
           <button className="border-1 w-full">
-            {isUploading ? "등록중" : "등록하기"}
+            {isUploading || isLoading ? "등록중" : "등록하기"}
           </button>
         </Form.Submit>
       </Form.Root>
