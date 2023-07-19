@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import useUser from "hooks/useUser";
+import useUser from "hooks/user/useUser";
 
 export default function UserProvider({ children }: PropsWithChildren) {
   const { user, isLoading } = useUser();

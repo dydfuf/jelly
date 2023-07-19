@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import useGetGroup from "./useGetGroup";
+import useGetGroup from "hooks/group/useGetGroup";
 
 export default function useGetMemory() {
   const { data: userData } = useSession();
@@ -26,6 +26,7 @@ interface Memory {
   location: string;
   content: string;
   date: Date;
+  userId: string;
 }
 const getMemories = (userId: string, groupId: string) => {
   return axios.get<Memory[]>(`/api/user/${userId}/group/${groupId}/memory`);

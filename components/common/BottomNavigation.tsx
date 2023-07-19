@@ -9,19 +9,17 @@ export default function BottomNavigation() {
       >
         memory
       </Link>
-
-      <Link
-        className="w-full border-1 flex items-center justify-center"
-        href={"/plan"}
-      >
-        plan
-      </Link>
-
       <Link
         className="w-full border-1 flex items-center justify-center"
         href={"/schedule"}
       >
         schedule
+      </Link>
+      <Link
+        className="w-full border-1 flex items-center justify-center"
+        href={"/plan"}
+      >
+        plan
       </Link>
 
       <Link

@@ -1,4 +1,4 @@
-import useGetSchedule from "hooks/useGetSchedule";
+import useGetSchedule from "hooks/schedule/useGetSchedule";
 
 export default function ScheduleContainer() {
   const { schedules, isLoading } = useGetSchedule();
