@@ -117,6 +117,7 @@ export default async function handler(
           groupId,
           recurringScheduleId,
           isAllDay: allDay,
+          userId,
         },
       });
     }

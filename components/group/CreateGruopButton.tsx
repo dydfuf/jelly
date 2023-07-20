@@ -1,4 +1,4 @@
-import usePostgroup from "hooks/usePostGroup";
+import usePostgroup from "hooks/group/usePostGroup";
 
 export default function CreateGruopButton() {
   const { isLoading: isPostGruopLoading, createGroup } = usePostgroup();

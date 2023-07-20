@@ -1,7 +1,7 @@
 import { signIn, signOut } from "next-auth/react";
 import React from "react";
-import useGetGroup from "hooks/useGetGroup";
-import useUser from "hooks/useUser";
+import useGetGroup from "hooks/group/useGetGroup";
+import useUser from "hooks/user/useUser";
 
 export default function SettingsContainer() {
   const handleSignIn = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import usePutGroup from "hooks/usePutGroup";
+import usePutGroup from "hooks/group/usePutGroup";
 
 export default function CreateGruopWithUserIdButton() {
   const { isLoading: isPutGruopLoading, createGroupWithGroupId } =

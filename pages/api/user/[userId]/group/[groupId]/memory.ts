@@ -82,6 +82,7 @@ export default async function handler(
         content,
         uploadedImageUrls,
         groupId,
+        userId,
       },
     });
 

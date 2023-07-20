@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import useGetGroup from "./useGetGroup";
+import useGetGroup from "../group/useGetGroup";
 
 export default function useGetSchedule() {
   const { data: userData } = useSession();

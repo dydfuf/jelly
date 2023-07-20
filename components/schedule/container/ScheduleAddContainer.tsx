@@ -3,7 +3,9 @@ import * as Switch from "@radix-ui/react-switch";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import Field from "components/common/form/Field";
-import usePostPlan, { PostScheduleParams } from "hooks/usePostSchedule";
+import usePostSchedule, {
+  PostScheduleParams,
+} from "hooks/schedule/usePostSchedule";
 import { RECURRING_TYPE, RecurringType } from "../type";
 
 export default function ScheduleAddContainer() {
@@ -13,7 +15,7 @@ export default function ScheduleAddContainer() {
   const [selectedRecurringType, setSelectedRecurringType] =
     useState<RecurringType>("none");
 
-  const { createSchedule, isLoading } = usePostPlan();
+  const { createSchedule, isLoading } = usePostSchedule();
 
   const isRecurringTypeNone = selectedRecurringType === "none";
 
