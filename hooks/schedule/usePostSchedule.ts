@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { RecurringType } from "components/schedule/type";
-import useGetGroup from "./group/useGetGroup";
+import useGetGroup from "hooks/group/useGetGroup";
 
 export default function usePostPlan() {
   const { data: userData } = useSession();
