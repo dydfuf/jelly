@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new PrismaClient();
+import { prisma } from "prisma/prisma";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +12,7 @@ export default async function handler(
   if (req.method === "PUT") {
     try {
       // 유저가 요청한 target group이 유효한지 확인한다.
-      const targetGruop = await client.group.findUnique({
+      const targetGruop = await prisma.group.findUnique({
         where: {
           id: groupId,
         },
@@ -25,7 +24,7 @@ export default async function handler(
       }
 
       // 요청한 유저가 속한 gruop을 가져온다.
-      const requestedUser = await client.userToGroup.findUnique({
+      const requestedUser = await prisma.userToGroup.findUnique({
         where: {
           userId,
         },
@@ -34,7 +33,7 @@ export default async function handler(
       if (requestedUser) {
         // 요청한 유저가 속한 gruop에 몇명 이 있는지 확인한다.
         const requestedUserParticipantGruopUserCount =
-          await client.userToGroup.count({
+          await prisma.userToGroup.count({
             where: {
               groupId: requestedUser?.groupId,
             },
@@ -47,7 +46,7 @@ export default async function handler(
       }
 
       // 유저가 참여하고자 하는 gruop에 유저가 몇 명이 있는지 확인한다.
-      const targetGruopUserCount = await client.userToGroup.findMany({
+      const targetGruopUserCount = await prisma.userToGroup.findMany({
         where: {
           groupId,
         },
@@ -60,13 +59,13 @@ export default async function handler(
 
       // 유저가 이미 그룹이 있다면, 즉 이미 그룹을 만들었으나 누군가 참여하지 않은경우. 본인이 속한 그룹을 삭제한다.
       if (requestedUser) {
-        await client.$transaction([
-          client.userToGroup.delete({
+        await prisma.$transaction([
+          prisma.userToGroup.delete({
             where: {
               userId: userId,
             },
           }),
-          client.group.delete({
+          prisma.group.delete({
             where: {
               id: requestedUser.groupId,
             },
@@ -75,7 +74,7 @@ export default async function handler(
       }
 
       // 기존의 그룹에 참여한다.
-      const newUserToGroupCount = await client.userToGroup.create({
+      const newUserToGroupCount = await prisma.userToGroup.create({
         data: {
           userId,
           groupId,

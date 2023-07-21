@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new PrismaClient();
+import { prisma } from "prisma/prisma";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,7 +9,7 @@ export default async function handler(
   const userId = req.query.userId as string;
   if (req.method === "GET") {
     try {
-      const user = await client.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: {
           id: userId,
         },
@@ -20,7 +19,7 @@ export default async function handler(
         return res.status(404).json("User NotFound");
       }
 
-      const userToGroup = await client.userToGroup.findUnique({
+      const userToGroup = await prisma.userToGroup.findUnique({
         where: {
           userId: userId,
         },
@@ -30,7 +29,7 @@ export default async function handler(
         return res.status(404).json("Group Not Found");
       }
 
-      const groupCount = await client.userToGroup.count({
+      const groupCount = await prisma.userToGroup.count({
         where: {
           groupId: userToGroup.groupId,
         },
@@ -43,7 +42,7 @@ export default async function handler(
   }
   if (req.method === "POST") {
     try {
-      const userToGroupCount = await client.userToGroup.count({
+      const userToGroupCount = await prisma.userToGroup.count({
         where: {
           userId,
         },
@@ -53,8 +52,8 @@ export default async function handler(
         return res.status(200).json("Already have group");
       }
 
-      const group = await client.group.create({ data: {} });
-      await client.userToGroup.create({
+      const group = await prisma.group.create({ data: {} });
+      await prisma.userToGroup.create({
         data: {
           userId,
           groupId: group.id,

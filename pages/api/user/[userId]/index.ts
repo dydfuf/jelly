@@ -1,13 +1,12 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new PrismaClient();
+import { prisma } from "prisma/prisma";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const user = await client.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: { id: req.query.userId as string },
   });
 

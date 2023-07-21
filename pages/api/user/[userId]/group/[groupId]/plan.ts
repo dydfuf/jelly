@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import { HttpStatusCode } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new PrismaClient();
+import { prisma } from "prisma/prisma";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +12,7 @@ export default async function handler(
 
   if (req.method === "GET") {
     try {
-      const targetGruop = await client.group.findUnique({
+      const targetGruop = await prisma.group.findUnique({
         where: {
           id: groupId,
         },
@@ -25,7 +24,7 @@ export default async function handler(
       }
 
       // 요청한 유저가 속한 gruop을 가져온다.
-      const requestedUser = await client.userToGroup.findUnique({
+      const requestedUser = await prisma.userToGroup.findUnique({
         where: {
           userId,
         },
@@ -36,7 +35,7 @@ export default async function handler(
         return res.status(403).json("User Not in Requested Gruop");
       }
 
-      const plans = await client.plan.findMany({
+      const plans = await prisma.plan.findMany({
         where: {
           groupId: targetGruop.id,
         },
@@ -49,7 +48,7 @@ export default async function handler(
   }
 
   if (req.method === "POST") {
-    const targetGruop = await client.group.findUnique({
+    const targetGruop = await prisma.group.findUnique({
       where: {
         id: groupId,
       },
@@ -61,7 +60,7 @@ export default async function handler(
     }
 
     // 요청한 유저가 속한 gruop을 가져온다.
-    const requestedUser = await client.userToGroup.findUnique({
+    const requestedUser = await prisma.userToGroup.findUnique({
       where: {
         userId,
       },
@@ -74,7 +73,7 @@ export default async function handler(
 
     const { title, isUndecided, startDate, endDate, content } = req.body;
     // 요청의 body를 통해 memroy를만든다.
-    const plan = await client.plan.create({
+    const plan = await prisma.plan.create({
       data: {
         title,
         isUndecided,
