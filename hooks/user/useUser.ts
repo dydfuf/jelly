@@ -11,6 +11,20 @@ export default function useUser() {
     () => getUserById(userId),
     {
       enabled: !!userId,
+      // initialData: () => {
+      //   return {
+      //     data: {
+      //       user: {
+      //         id: "clk9weg7v0000i8zw3lgiiq1m",
+      //         name: "최용열",
+      //         email: "dydfuf38@gmail.com",
+      //         emailVerified: null,
+      //         image:
+      //           "https://lh3.googleusercontent.com/a/AAcHTtfBBfbHwQooYk5HUrfuM9gzfY7JEl2RaAz-X-kJPJe4=s96-c",
+      //       },
+      //     },
+      //   };
+      // },
     }
   );
 
