@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { HttpStatusCode } from "axios";
 import { addMinutes, differenceInMinutes } from "date-fns";
 import { map } from "lodash-es";
 import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from "prisma/prisma";
 import { parseRecurringSchedule } from "server/utils/scheduleHelper";
-
-const client = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,7 +14,7 @@ export default async function handler(
 
   if (req.method === "GET") {
     try {
-      const targetGruop = await client.group.findUnique({
+      const targetGruop = await prisma.group.findUnique({
         where: {
           id: groupId,
         },
@@ -28,7 +26,7 @@ export default async function handler(
       }
 
       // 요청한 유저가 속한 gruop을 가져온다.
-      const requestedUser = await client.userToGroup.findUnique({
+      const requestedUser = await prisma.userToGroup.findUnique({
         where: {
           userId,
         },
@@ -39,7 +37,7 @@ export default async function handler(
         return res.status(403).json("User Not in Requested Gruop");
       }
 
-      const schedules = await client.schedule.findMany({
+      const schedules = await prisma.schedule.findMany({
         where: {
           groupId: targetGruop.id,
         },
@@ -52,7 +50,7 @@ export default async function handler(
   }
 
   if (req.method === "POST") {
-    const targetGruop = await client.group.findUnique({
+    const targetGruop = await prisma.group.findUnique({
       where: {
         id: groupId,
       },
@@ -64,7 +62,7 @@ export default async function handler(
     }
 
     // 요청한 유저가 속한 gruop을 가져온다.
-    const requestedUser = await client.userToGroup.findUnique({
+    const requestedUser = await prisma.userToGroup.findUnique({
       where: {
         userId,
       },
@@ -96,7 +94,7 @@ export default async function handler(
 
     let recurringScheduleId;
     if (recurring !== "none") {
-      const recurringSchedule = await client.recurringSchedule.create({
+      const recurringSchedule = await prisma.recurringSchedule.create({
         data: {},
       });
       recurringScheduleId = recurringSchedule.id;
@@ -108,7 +106,7 @@ export default async function handler(
     )) {
       const start = parsedRecurringSchedule[i];
 
-      await client.schedule.create({
+      await prisma.schedule.create({
         data: {
           title,
           startDate: start,

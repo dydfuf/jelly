@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import GithubProvider from "next-auth/providers/github";
@@ -7,8 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
 import { env } from "env.mjs";
-
-const prisma = new PrismaClient();
+import { prisma } from "prisma/prisma";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
