@@ -1,4 +1,5 @@
 import "../styles/tailwind.css";
+import "../components/common/calendar/calendar.scss";
 import { AppProps } from "next/app";
 import Layout from "components/common/Layout";
 import AppProvider from "components/common/Provider/AppProvider";

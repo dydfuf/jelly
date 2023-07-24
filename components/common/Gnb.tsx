@@ -42,7 +42,7 @@ export default function Gnb() {
   };
 
   return (
-    <header className="flex fixed top-0 h-60 w-full items-center px-12 border-b-1">
+    <header className="flex relative h-60 w-full items-center px-12 border-b-1 bg-white z-[1000]">
       <button
         className="mr-auto w-20 h-20 flex items-center justify-center"
         onClick={() => router.back()}
