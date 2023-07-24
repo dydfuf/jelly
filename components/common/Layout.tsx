@@ -11,9 +11,14 @@ const poppins = Poppins({
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <div className={cn("flex flex-col h-full", poppins.className)}>
+    <div
+      className={cn(
+        "flex flex-col h-[100dvh] overflow-hidden",
+        poppins.className
+      )}
+    >
       <Gnb />
-      <div className="flex-1 min-h-screen overflow-auto py-60">{children}</div>
+      <div className="flex-1 overflow-auto overscroll-contain">{children}</div>
       <BottomNavigation />
     </div>
   );

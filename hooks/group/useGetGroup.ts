@@ -11,18 +11,6 @@ export default function useGetGroup() {
     () => getGroupByUserId(userId),
     {
       enabled: !!userId,
-      // initialData: () => {
-      //   return {
-      //     data: {
-      //       userToGroup: {
-      //         id: "clk9wewa3000ei8zwk5eszhy5",
-      //         userId: \"clk9weg7v0000i8zw3lgiiq1m",
-      //         groupId: "clk9wev6k000ci8zwsqf5uv1p",
-      //       },
-      //       count: 2,
-      //     },
-      //   };
-      // },
     }
   );
 

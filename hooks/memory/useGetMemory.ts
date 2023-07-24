@@ -20,12 +20,12 @@ export default function useGetMemory() {
   return { isLoading, memories: data?.data };
 }
 
-interface Memory {
+export interface Memory {
   uploadedImageUrls: string[];
   title: string;
   location: string;
   content: string;
-  date: Date;
+  date: string;
   userId: string;
 }
 const getMemories = (userId: string, groupId: string) => {
