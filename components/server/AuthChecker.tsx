@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { PropsWithChildren, use } from "react";
-import { getCurrentUser } from "utils/session";
+import { getCurrentUser } from "utils/api/session";
 
 export default function AuthChecker({ children }: PropsWithChildren) {
   const user = use(getCurrentUser());

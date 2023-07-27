@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
-import { getCurrentUser } from "utils/session";
+import { getCurrentUser } from "utils/api/session";
 
 interface _User {
   user: {

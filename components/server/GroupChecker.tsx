@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { getCurrentGroup } from "utils/group";
+import { getCurrentGroup } from "utils/api/group";
 
 export default async function GroupChecker({ children }: PropsWithChildren) {
   const group = await getCurrentGroup();

@@ -2,9 +2,9 @@
 
 import { isSameDay } from "date-fns";
 import { useState } from "react";
-import { Memory } from "app/memory/page";
 import Calendar from "components/common/calendar";
 import MemoryList from "components/memory/components/MemoryList";
+import { Memory } from "utils/api/memory";
 
 interface Props {
   memories: Memory[];

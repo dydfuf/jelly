@@ -1,6 +1,6 @@
 import { isSameDay } from "date-fns";
 import { useSession } from "next-auth/react";
-import { memo, useState } from "react";
+import { useState } from "react";
 import Calendar from "components/common/calendar";
 import useGetMemory from "hooks/memory/useGetMemory";
 import MemoryList from "../components/MemoryList";

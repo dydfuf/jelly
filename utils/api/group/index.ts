@@ -1,4 +1,4 @@
-import { getCurrentUser } from "./session";
+import { getCurrentUser } from "../session";
 
 interface _Group {
   userToGroup: {

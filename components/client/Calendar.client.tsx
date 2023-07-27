@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Memory } from "app/memory/page";
 import Calendar from "components/common/calendar";
+import { Memory } from "utils/api/memory";
 
 interface Props {
   memories: Memory[];
