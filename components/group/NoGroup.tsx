@@ -1,3 +1,5 @@
+"user client";
+
 import CreateGruopButton from "./CreateGruopButton";
 import CreateGruopWithUserIdButton from "./CreateGruopWithUserIdButton";
 

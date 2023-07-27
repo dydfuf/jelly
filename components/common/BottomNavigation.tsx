@@ -5,11 +5,9 @@ import {
   RocketIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import ActiveLine from "components/client/ActiveLine";
 
 export default function BottomNavigation() {
-  const router = useRouter();
-
   return (
     <div className="flex justify-between h-60 w-full items-center border-t-1 bg-white">
       {BOTTOM_NAVIGATION_LISTS.map((bottomNavigation) => {
@@ -20,9 +18,7 @@ export default function BottomNavigation() {
             className="w-full h-full flex items-center justify-center relative mx-8"
             href={href}
           >
-            {router.pathname === href && (
-              <div className="w-full h-4 rounded-full bg-black absolute top-0" />
-            )}
+            <ActiveLine href={href} />
             {icon}
           </Link>
         );

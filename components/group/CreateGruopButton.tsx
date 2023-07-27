@@ -1,3 +1,5 @@
+"user client";
+
 import usePostgroup from "hooks/group/usePostGroup";
 
 export default function CreateGruopButton() {

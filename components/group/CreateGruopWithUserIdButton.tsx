@@ -1,3 +1,5 @@
+"user client";
+
 import { useState } from "react";
 import usePutGroup from "hooks/group/usePutGroup";
 

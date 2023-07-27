@@ -1,26 +1,29 @@
+"use client";
+
 import { ArrowLeftIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Gnb() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const showAddButton = ["/memory", "/plan", "/schedule"].includes(
-    router.pathname
+    pathname ?? ""
   );
 
   const handleAddButtonClick = () => {
-    if (router.pathname === "/memory") {
+    if (pathname === "/memory") {
       router.push("/memory/add");
     }
-    if (router.pathname === "/schedule") {
+    if (pathname === "/schedule") {
       router.push("/schedule/add");
     }
-    if (router.pathname === "/plan") {
+    if (pathname === "/plan") {
       router.push("/plan/add");
     }
   };
 
-  const getTitle = (pathname: string) => {
+  const getTitle = (pathname: string | null) => {
     switch (pathname) {
       case "/memory":
         return "추억";
@@ -50,7 +53,7 @@ export default function Gnb() {
         <ArrowLeftIcon width={30} height={30} />
       </button>
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-18 tracking-widest font-semibold">
-        {getTitle(router.pathname)}
+        {getTitle(pathname)}
       </div>
       {showAddButton && (
         <button

@@ -8,9 +8,9 @@ interface Props {
 export default function MemoryList({ memories }: Props) {
   return (
     <div>
-      {memories.map((memory) => (
+      {memories.map((memory, i) => (
         <div
-          key={`${memory.date}-${memory.title}`}
+          key={`${memory.date}-${memory.title}-${i}`}
           className="w-full border-1 flex flex-col items-center"
         >
           <p className="font-bold text-24 tracking-wider">{memory.title}</p>
