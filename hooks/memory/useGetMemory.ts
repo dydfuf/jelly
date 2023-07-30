@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import useGetGroup from "hooks/group/useGetGroup";
+import useMemoryState from "stores/memory";
 
 export default function useGetMemory() {
   const { data: userData } = useSession();
@@ -9,11 +10,24 @@ export default function useGetMemory() {
   const { data: gruop } = useGetGroup();
   const groupId = gruop?.userToGroup.groupId || "";
 
+  const [memories, initMemory] = useMemoryState((state) => [
+    state.memories,
+    state.initMemory,
+  ]);
+
   const { isLoading, data } = useQuery(
     ["memory", userId, groupId],
     () => getMemories(userId, groupId),
     {
       enabled: !!userId && !!groupId,
+      onSuccess: (data) => {
+        if (data?.data) {
+          initMemory(data?.data);
+        }
+      },
+      initialData: () => {
+        return { data: memories };
+      },
     }
   );
 
