@@ -18,6 +18,9 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
       },
     ],
   },
+  experimental: {
+    serverActions: true,
+  },
 });
 
 export default config;
