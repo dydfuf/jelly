@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.fc-dayGridWeek-view {
+  .fc-daygrid-day-frame {
+    aspect-ratio: 1/6;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .fc-daygrid-day-top {
   flex-direction: column !important;
   height: auto !important;

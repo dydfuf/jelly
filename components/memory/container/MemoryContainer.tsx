@@ -1,6 +1,6 @@
 import { isSameDay } from "date-fns";
 import { useState } from "react";
-import Calendar from "components/common/calendar";
+import MemoryCalendar from "components/memory/components/MemoryCalendar";
 import useGetMemory from "hooks/memory/useGetMemory";
 import MemoryList from "../components/MemoryList";
 
@@ -18,7 +18,7 @@ export default function MemoryContainer() {
 
   return (
     <div className="flex flex-col pt-12 px-8 max-w-[640px]">
-      <Calendar
+      <MemoryCalendar
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         events={memories}

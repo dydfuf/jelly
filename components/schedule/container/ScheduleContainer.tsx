@@ -1,36 +1,22 @@
+import { useState } from "react";
 import useGetSchedule from "hooks/schedule/useGetSchedule";
+import ScheduleCalendar from "../components/ScheduleCalendar";
 
 export default function ScheduleContainer() {
-  const { schedules, isLoading } = useGetSchedule();
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
+  const { schedules } = useGetSchedule();
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  if (!schedules || schedules.length === 0) {
+  if (!schedules) {
     return <div>No schedules</div>;
   }
 
   return (
-    <div className="flex flex-col gap-10">
-      {schedules.map(
-        ({
-          title,
-          startDate,
-          endDate,
-          content,
-          groupId,
-          recurringScheduleId,
-        }) => (
-          <div key={`${content}-${title}`} className="border-10">
-            <p>title: {title}</p>
-            <p>startDate: {startDate}</p>
-            <p>endDate: {endDate}</p>
-            <p>content : {content}</p>
-            <p>groupId : {groupId}</p>
-            <p>recurringScheduleId : {recurringScheduleId}</p>
-          </div>
-        )
-      )}
+    <div className="flex flex-col pt-12 px-8 max-w-[640px] mx-auto">
+      <ScheduleCalendar
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        events={schedules}
+      />
     </div>
   );
 }

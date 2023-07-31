@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { RecurringType } from "components/schedule/type";
 import useGetGroup from "hooks/group/useGetGroup";
+import useScheduleState from "stores/schedule";
 
 export default function usePostPlan() {
   const { data: userData } = useSession();
@@ -11,18 +12,18 @@ export default function usePostPlan() {
   const userId = userData?.user?.id || "";
   const groupId = group?.userToGroup.groupId || "";
 
-  const queryCache = useQueryClient();
+  const addSchedule = useScheduleState((state) => state.addSchedule);
 
   const { mutateAsync: createSchedule, isLoading } = useMutation(
     ["Create Schedule", userId, groupId],
     (data: PostScheduleParams) => postSchedule(userId, groupId, data),
     {
-      onMutate: () => {
-        setTimeout(() => {
-          queryCache.invalidateQueries({
-            queryKey: ["schedule", userId, groupId],
+      onSuccess: (data) => {
+        if (data?.data) {
+          addSchedule({
+            ...data?.data,
           });
-        }, 3000);
+        }
       },
     }
   );

@@ -10,7 +10,7 @@ interface Props extends DayCellContentArg {
   events: Memory[];
 }
 
-export default function DayCell(props: Props) {
+export default function MemoryCell(props: Props) {
   const { dayNumberText, date, setSelectedDate, selectedDate, events } = props;
 
   const images = events

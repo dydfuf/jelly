@@ -20,7 +20,7 @@ export default function useGetPlan() {
   return { isLoading, plans: data?.data };
 }
 
-interface Plan {
+export interface Plan {
   title: string;
   startDate: string;
   endDate: string;
