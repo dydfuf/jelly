@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useGetSchedule from "hooks/schedule/useGetSchedule";
 import ScheduleCalendar from "../components/ScheduleCalendar";
+import ScheduleList from "../components/ScheduleList";
 
 export default function ScheduleContainer() {
   const { schedules } = useGetSchedule();
@@ -17,6 +18,7 @@ export default function ScheduleContainer() {
         setSelectedDate={setSelectedDate}
         events={schedules}
       />
+      <ScheduleList schedules={schedules} selectedDate={selectedDate} />
     </div>
   );
 }
