@@ -12,12 +12,14 @@ interface Props extends DayCellContentArg {
 export default function ScheduleCell(props: Props) {
   const { dayNumberText, date, setSelectedDate, selectedDate, events } = props;
 
-  const schedules = events.filter((event) =>
-    isWithinInterval(date, {
-      start: startOfDay(new Date(event.startDate)),
-      end: endOfDay(new Date(event.endDate)),
-    })
-  );
+  const schedules = events
+    .filter((event) =>
+      isWithinInterval(date, {
+        start: startOfDay(new Date(event.startDate)),
+        end: endOfDay(new Date(event.endDate)),
+      })
+    )
+    .slice(0, 2);
 
   const handleDayClick = () => {
     setSelectedDate(date);

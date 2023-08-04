@@ -1,7 +1,7 @@
 import koLocale from "@fullcalendar/core/locales/ko";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { endOfDay, isWithinInterval, startOfDay } from "date-fns";
+import { endOfDay, format, isWithinInterval, startOfDay } from "date-fns";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { Schedule } from "hooks/schedule/useGetSchedule";
@@ -26,8 +26,12 @@ export default function DetailCalendar({ schedules, selectedDate }: Props) {
     )
     .map((schedule) => ({
       title: schedule.title,
-      start: schedule.startDate,
-      end: schedule.endDate,
+      start: schedule.isAllDay
+        ? format(new Date(selectedDate), "yyyy-MM-dd")
+        : schedule.startDate,
+      end: schedule.isAllDay
+        ? format(new Date(selectedDate), "yyyy-MM-dd")
+        : schedule.endDate,
       allDay: schedule.isAllDay,
       ...(userId !== schedule.userId && { color: "red" }),
     }));
