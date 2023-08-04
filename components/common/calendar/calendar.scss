@@ -1,7 +1,35 @@
-.fc-daygrid-day-frame {
-  aspect-ratio: 1/1;
-  display: flex;
-  flex-direction: column;
+.memory {
+  .fc-daygrid-day-frame {
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  table,
+  .fc td,
+  .fc th {
+    border-style: none !important;
+  }
+
+  .fc-daygrid-day-events {
+    margin: 0 !important;
+    min-height: none;
+    display: none;
+  }
+}
+
+.schedule {
+  table,
+  .fc td,
+  .fc th {
+    border-style: none !important;
+  }
+
+  .fc-daygrid-day-events {
+    margin: 0 !important;
+    min-height: none;
+    display: none;
+  }
 }
 
 .fc-dayGridWeek-view {
@@ -21,12 +49,6 @@
   }
 }
 
-.fc-daygrid-day-events {
-  margin: 0 !important;
-  min-height: none;
-  display: none;
-}
-
 .fc-daygrid-day-top {
   height: 100% !important;
 }
@@ -37,12 +59,6 @@
 
 .fc-daygrid-dot-event:hover {
   background: none;
-}
-
-table,
-.fc td,
-.fc th {
-  border-style: none !important;
 }
 
 .fc .fc-daygrid-day.fc-day-today {
@@ -59,10 +75,7 @@ table,
   border: none;
 }
 
-.fc-icon-chevron-right {
-  color: black !important;
-}
-
+.fc-icon-chevron-right,
 .fc-icon-chevron-left {
   color: black !important;
 }

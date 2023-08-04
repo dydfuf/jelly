@@ -7,9 +7,5 @@ interface Props {
 }
 
 export default function ScheduleList({ schedules, selectedDate }: Props) {
-  return (
-    <div>
-      <DetailCalendar schedules={schedules} selectedDate={selectedDate} />
-    </div>
-  );
+  return <DetailCalendar schedules={schedules} selectedDate={selectedDate} />;
 }

@@ -1,8 +1,9 @@
 import koLocale from "@fullcalendar/core/locales/ko";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
+import { endOfDay, isWithinInterval, startOfDay } from "date-fns";
+import { useSession } from "next-auth/react";
+import { useEffect, useRef } from "react";
 import { Schedule } from "hooks/schedule/useGetSchedule";
 
 interface Props {
@@ -11,41 +12,50 @@ interface Props {
 }
 
 export default function DetailCalendar({ schedules, selectedDate }: Props) {
+  const { data: userData } = useSession();
+  const userId = userData?.user?.id || "";
+
+  const ref = useRef<FullCalendar>(null);
+
+  const events = schedules
+    .filter((schedule) =>
+      isWithinInterval(selectedDate, {
+        start: startOfDay(new Date(schedule.startDate)),
+        end: endOfDay(new Date(schedule.endDate)),
+      })
+    )
+    .map((schedule) => ({
+      title: schedule.title,
+      start: schedule.startDate,
+      end: schedule.endDate,
+      allDay: schedule.isAllDay,
+      ...(userId !== schedule.userId && { color: "red" }),
+    }));
+
+  console.log(events);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.getApi().gotoDate(selectedDate);
+    }
+  }, [selectedDate]);
+
   return (
-    <FullCalendar
-      plugins={[timeGridPlugin]}
-      initialDate={selectedDate}
-      initialView={"timeGridDay"}
-      headerToolbar={{
-        left: "",
-        center: "",
-        right: "",
-      }}
-      locale={koLocale}
-      contentHeight={"auto"}
-      eventContent={(event) => {
-        console.log(event);
-      }}
-      events={[
-        {
-          title: "Conference",
-          start: "2023-07-30",
-          end: "2023-08-01",
-        },
-        {
-          title: "Meeting",
-          start: "2023-07-31T10:30:00+00:00",
-          end: "2023-07-31T12:30:00+00:00",
-        },
-        {
-          title: "Lunch",
-          start: "2023-07-31T12:00:00+00:00",
-        },
-        {
-          title: "Birthday Party",
-          start: "2023-08-01T07:00:00+00:00",
-        },
-      ]}
-    />
+    <div>
+      <FullCalendar
+        ref={ref}
+        plugins={[timeGridPlugin]}
+        initialDate={selectedDate}
+        initialView={"timeGridDay"}
+        headerToolbar={{
+          left: "",
+          center: "",
+          right: "",
+        }}
+        locale={koLocale}
+        contentHeight={"auto"}
+        events={events}
+      />
+    </div>
   );
 }

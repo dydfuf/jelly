@@ -17,7 +17,8 @@ export default function MemoryContainer() {
   }
 
   return (
-    <div className="flex flex-col pt-12 px-8 max-w-[640px]">
+    // eslint-disable-next-line tailwindcss/no-custom-classname
+    <div className="flex flex-col pt-12 px-8 max-w-[640px] memory">
       <MemoryCalendar
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}

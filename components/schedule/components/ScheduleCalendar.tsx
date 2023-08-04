@@ -36,7 +36,8 @@ export default function ScheduleCalendar({
   }, [calendarType, initialView, selectedDate]);
 
   return (
-    <>
+    // eslint-disable-next-line tailwindcss/no-custom-classname
+    <div className="flex flex-col schedule">
       <div className="flex ml-auto">
         <button
           className={cn("w-60 border-1 rounded-6", {
@@ -82,7 +83,7 @@ export default function ScheduleCalendar({
         nowIndicator={true}
         selectable={true}
       />
-    </>
+    </div>
   );
 }
 

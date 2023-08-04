@@ -41,6 +41,8 @@ export interface Schedule {
   content: string;
   groupId: string;
   recurringScheduleId?: string;
+  isAllDay: boolean;
+  userId: string;
 }
 const getSchedules = (userId: string, groupId: string) => {
   return axios.get<Schedule[]>(`/api/user/${userId}/group/${groupId}/schedule`);
