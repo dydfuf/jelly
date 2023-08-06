@@ -27,6 +27,96 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        mint: {
+          DEFAULT: "#7DF9FF",
+        },
+        "mint-100": {
+          DEFAULT: "#DAF5F0",
+        },
+        "mint-200": {
+          DEFAULT: "#A7DBD8",
+        },
+        "mint-300": {
+          DEFAULT: "#87CEEB",
+        },
+        "mint-400": {
+          DEFAULT: "#69D2E7",
+        },
+        green: {
+          DEFAULT: "#2FFF2F",
+        },
+        "green-100": {
+          DEFAULT: "#B5D2AD",
+        },
+        "green-200": {
+          DEFAULT: "#BAFCA2",
+        },
+        "green-300": {
+          DEFAULT: "#90EE90",
+        },
+        "green-400": {
+          DEFAULT: "#7FBC8C",
+        },
+        pink: {
+          DEFAULT: "#FF00F5",
+        },
+        "pink-100": {
+          DEFAULT: "#FCDFFF",
+        },
+        "pink-200": {
+          DEFAULT: "#FFC0CB",
+        },
+        "pink-300": {
+          DEFAULT: "#FFB2EF",
+        },
+        "pink-400": {
+          DEFAULT: "#FF69B4",
+        },
+        blue: {
+          DEFAULT: "#3300FF",
+        },
+        yellow: {
+          DEFAULT: "#FFFF00",
+        },
+        "yellow-100": {
+          DEFAULT: "#FDFD96",
+        },
+        "yellow-200": {
+          DEFAULT: "#FFDB58",
+        },
+        "yellow-300": {
+          DEFAULT: "#F4D738",
+        },
+        "yellow-400": {
+          DEFAULT: "#E3A018",
+        },
+        red: {
+          DEFAULT: "#FF4911",
+        },
+        "red-100": {
+          DEFAULT: "#F8D6B3",
+        },
+        "red-200": {
+          DEFAULT: "#FFA07A",
+        },
+        "red-300": {
+          DEFAULT: "#FF7A5C",
+        },
+        "red-400": {
+          DEFAULT: "#FF6B6B",
+        },
+        "purple-100": {
+          DEFAULT: "#E3DFF2",
+        },
+        "purple-200": {
+          DEFAULT: "#C4A1FF",
+        },
+        "purple-300": {
+          DEFAULT: "#A388EE",
+        },
+        "purple-400": {
+          DEFAULT: "#9723C9",
+        },
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",

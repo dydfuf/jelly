@@ -42,14 +42,14 @@ export default function Gnb() {
   };
 
   return (
-    <header className="flex relative h-60 w-full items-center px-12 border-b-1 bg-white z-[1000]">
+    <header className="flex relative h-60 w-full items-center px-12 border-b-4 border-black bg-white z-[1000]">
       <button
         className="mr-auto w-20 h-20 flex items-center justify-center"
         onClick={() => router.back()}
       >
         <ArrowLeftIcon width={30} height={30} />
       </button>
-      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-18 tracking-widest font-semibold">
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-24 tracking-widest font-semibold">
         {getTitle(router.pathname)}
       </div>
       {showAddButton && (

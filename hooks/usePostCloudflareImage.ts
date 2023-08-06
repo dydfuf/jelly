@@ -10,6 +10,10 @@ export default function usePostCloudflareImage() {
 
   const { mutateAsync: uploadImage, isLoading: isUploadImageLoading } =
     useMutation(["upload cloudflare image"], async (photos: File[]) => {
+      if (photos.length === 1 && photos[0].size === 0) {
+        return [];
+      }
+
       const { data } = await getUploadUrl(photos.length);
       const results: string[] = [];
 

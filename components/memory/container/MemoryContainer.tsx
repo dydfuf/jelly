@@ -24,6 +24,7 @@ export default function MemoryContainer() {
         setSelectedDate={setSelectedDate}
         events={memories}
       />
+      <div className="w-[calc(100%_-_16px)] h-4 bg-black rounded-full mx-auto" />
       <MemoryList memories={selectedDateMemory || []} />
     </div>
   );
