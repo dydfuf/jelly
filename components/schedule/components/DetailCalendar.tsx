@@ -36,8 +36,6 @@ export default function DetailCalendar({ schedules, selectedDate }: Props) {
       ...(userId !== schedule.userId && { color: "red" }),
     }));
 
-  console.log(events);
-
   useEffect(() => {
     if (ref.current) {
       ref.current.getApi().gotoDate(selectedDate);

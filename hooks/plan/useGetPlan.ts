@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import usePlanState from "stores/Plan";
 import useGetGroup from "../group/useGetGroup";
 
 export default function useGetPlan() {
@@ -9,15 +10,28 @@ export default function useGetPlan() {
   const { data: gruop } = useGetGroup();
   const groupId = gruop?.userToGroup.groupId || "";
 
-  const { isLoading, data } = useQuery(
+  const [plans, initPlans] = usePlanState((state) => [
+    state.plans,
+    state.initPlans,
+  ]);
+
+  const { data } = useQuery(
     ["plan", userId, groupId],
     () => getSchedules(userId, groupId),
     {
       enabled: !!userId && !!groupId,
+      onSuccess: (data) => {
+        if (data?.data) {
+          initPlans(data?.data);
+        }
+      },
+      initialData: () => {
+        return { data: plans };
+      },
     }
   );
 
-  return { isLoading, plans: data?.data };
+  return { plans: data?.data };
 }
 
 export interface Plan {

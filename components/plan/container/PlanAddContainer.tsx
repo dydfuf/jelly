@@ -18,8 +18,8 @@ export default function PlanAddContainer() {
     const data = Object.fromEntries(new FormData(event.currentTarget));
     await createPlan({
       ...data,
-      startDate: (data.startDate + "Z") as string,
-      endDate: (data.endDate + "Z") as string,
+      ...(data.startDate && { startDate: (data.startDate + "Z") as string }),
+      ...(data.endDate && { startDate: (data.endDate + "Z") as string }),
       isUndecided: data.isUndecided === "on",
     } as PostPlanParams);
 
@@ -67,7 +67,7 @@ export default function PlanAddContainer() {
             >
               <input
                 className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
-                type="datetime-local"
+                type="date"
                 required
               />
             </Field>
@@ -78,7 +78,7 @@ export default function PlanAddContainer() {
             >
               <input
                 className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
-                type="datetime-local"
+                type="date"
                 required
               />
             </Field>
