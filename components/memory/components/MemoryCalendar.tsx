@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import FullCalendar from "@fullcalendar/react";
 import { format } from "date-fns";
 import { Memory } from "hooks/memory/useGetMemory";
-import DayCell from "./DayCell";
+import MemoryCell from "./MemoryCell";
 
 interface Props {
   selectedDate: Date;
@@ -11,7 +11,7 @@ interface Props {
   events: Memory[];
 }
 
-export default function Calendar({
+export default function MemoryCalendar({
   selectedDate,
   setSelectedDate,
   events,
@@ -30,7 +30,7 @@ export default function Calendar({
       locale={koLocale}
       titleFormat={(date) => format(date.date.marker, "yyyy년 MM월")}
       dayCellContent={(cell) => (
-        <DayCell
+        <MemoryCell
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           events={events}

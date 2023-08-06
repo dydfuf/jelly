@@ -1,6 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import useMemoryState from "stores/memory";
+import { Memory } from "./useGetMemory";
 import useGetGroup from "../group/useGetGroup";
 
 export default function usePostMemory() {
@@ -10,18 +12,18 @@ export default function usePostMemory() {
   const userId = userData?.user?.id || "";
   const groupId = group?.userToGroup.groupId || "";
 
-  const queryCache = useQueryClient();
+  const addMemory = useMemoryState((state) => state.addMemory);
 
   const { mutateAsync: createMemory, isLoading } = useMutation(
     ["Create Memory", userId, groupId],
     (data: PostMemoryParams) => postMemory(userId, groupId, data),
     {
-      onMutate: () => {
-        setTimeout(() => {
-          queryCache.invalidateQueries({
-            queryKey: ["memory", userId, groupId],
+      onSuccess: (data) => {
+        if (data?.data) {
+          addMemory({
+            ...data?.data,
           });
-        }, 3000);
+        }
       },
     }
   );
@@ -41,5 +43,8 @@ const postMemory = (
   groupId: string,
   data: PostMemoryParams
 ) => {
-  return axios.post(`/api/user/${userId}/group/${groupId}/memory`, data);
+  return axios.post<Memory>(
+    `/api/user/${userId}/group/${groupId}/memory`,
+    data
+  );
 };

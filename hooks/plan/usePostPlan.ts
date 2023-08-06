@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import usePlanState from "stores/Plan";
 import useGetGroup from "../group/useGetGroup";
 
 export default function usePostMemory() {
@@ -10,18 +11,18 @@ export default function usePostMemory() {
   const userId = userData?.user?.id || "";
   const groupId = group?.userToGroup.groupId || "";
 
-  const queryCache = useQueryClient();
+  const addPlan = usePlanState((state) => state.addPlan);
 
   const { mutateAsync: createPlan, isLoading } = useMutation(
     ["Create Plan", userId, groupId],
     (data: PostPlanParams) => postPlan(userId, groupId, data),
     {
-      onMutate: () => {
-        setTimeout(() => {
-          queryCache.invalidateQueries({
-            queryKey: ["plan", userId, groupId],
+      onSuccess: (data) => {
+        if (data?.data) {
+          addPlan({
+            ...data?.data,
           });
-        }, 3000);
+        }
       },
     }
   );
@@ -31,8 +32,8 @@ export default function usePostMemory() {
 
 export interface PostPlanParams {
   title: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
   content: string;
   isUndecided: boolean;
 }

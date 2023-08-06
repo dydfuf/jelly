@@ -1,7 +1,49 @@
-.fc-daygrid-day-frame {
-  aspect-ratio: 1/1;
-  display: flex;
-  flex-direction: column;
+.memory {
+  .fc-daygrid-day-frame {
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  table,
+  .fc td,
+  .fc th {
+    border-style: none !important;
+  }
+
+  .fc-daygrid-day-events {
+    margin: 0 !important;
+    min-height: none;
+    display: none;
+  }
+}
+
+.schedule {
+  table,
+  .fc td,
+  .fc th {
+    border-style: none !important;
+  }
+
+  .fc-daygrid-day-events {
+    margin: 0 !important;
+    min-height: none;
+    display: none;
+  }
+
+  .fc-daygrid-day-frame {
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.fc-dayGridWeek-view {
+  .fc-daygrid-day-frame {
+    aspect-ratio: 1/6;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .fc-daygrid-day-top {
@@ -11,12 +53,6 @@
   a {
     padding: 0 4px !important;
   }
-}
-
-.fc-daygrid-day-events {
-  margin: 0 !important;
-  min-height: none;
-  display: none;
 }
 
 .fc-daygrid-day-top {
@@ -29,12 +65,6 @@
 
 .fc-daygrid-dot-event:hover {
   background: none;
-}
-
-table,
-.fc td,
-.fc th {
-  border-style: none !important;
 }
 
 .fc .fc-daygrid-day.fc-day-today {
@@ -51,10 +81,7 @@ table,
   border: none;
 }
 
-.fc-icon-chevron-right {
-  color: black !important;
-}
-
+.fc-icon-chevron-right,
 .fc-icon-chevron-left {
   color: black !important;
 }

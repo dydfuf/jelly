@@ -72,13 +72,13 @@ export default async function handler(
     }
 
     const { title, isUndecided, startDate, endDate, content } = req.body;
-    // 요청의 body를 통해 memroy를만든다.
+
     const plan = await prisma.plan.create({
       data: {
         title,
         isUndecided,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
         content,
         groupId,
         userId,
