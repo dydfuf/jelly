@@ -1,20 +1,17 @@
-import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import { PropsWithChildren } from "react";
 import { cn } from "utils/common";
 import BottomNavigation from "./BottomNavigation";
 import Gnb from "./Gnb";
 
-const poppins = Poppins({
-  weight: ["500", "600", "700"],
-  subsets: ["latin"],
-});
+const BMJUA = localFont({ src: "../../font/BMJUA_ttf.ttf" });
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <div
       className={cn(
         "flex flex-col h-[100dvh] overflow-hidden",
-        poppins.className
+        BMJUA.className
       )}
     >
       <Gnb />
