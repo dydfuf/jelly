@@ -25,7 +25,8 @@ export default function MemoryCell(props: Props) {
   return (
     <div
       className={cn("flex flex-col gap-y-4 cursor-pointer h-full", {
-        "bg-black/10 rounded-4": isSameDay(selectedDate, date),
+        "bg-yellow-100 border-1 border-black shadow-[2px_2px_0px_0px_#000]":
+          isSameDay(selectedDate, date),
       })}
       onClick={handleDayClick}
     >

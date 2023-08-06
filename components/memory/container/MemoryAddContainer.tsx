@@ -17,9 +17,11 @@ export default function MemoryAddContainer() {
 
     const data = Object.fromEntries(new FormData(event.currentTarget));
     const formData = new FormData(event.currentTarget);
+
     const uploadedImageUrls = await uploadImage(
       formData.getAll("photo") as File[]
     );
+
     await createMemory({
       content: data.content as string,
       title: data.title as string,
@@ -90,7 +92,6 @@ export default function MemoryAddContainer() {
               type="file"
               accept="image/png, image/jpeg"
               multiple
-              required
             />
           </Form.Control>
         </Form.Field>

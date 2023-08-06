@@ -20,9 +20,7 @@ export default function usePostPlan() {
     {
       onSuccess: (data) => {
         if (data?.data) {
-          addSchedule({
-            ...data?.data,
-          });
+          addSchedule(data?.data.schedules);
         }
       },
     }
