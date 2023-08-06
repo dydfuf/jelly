@@ -100,13 +100,15 @@ export default async function handler(
       recurringScheduleId = recurringSchedule.id;
     }
 
+    const results = [];
+
     for (const i of map(
       new Array(parsedRecurringSchedule.length),
       (_, i) => i
     )) {
       const start = parsedRecurringSchedule[i];
 
-      await prisma.schedule.create({
+      const result = await prisma.schedule.create({
         data: {
           title,
           startDate: start,
@@ -118,9 +120,10 @@ export default async function handler(
           userId,
         },
       });
+      results.push(result);
     }
 
-    return res.status(200).json("Done");
+    return res.status(200).json({ schedules: results });
   }
 
   return res.status(HttpStatusCode.MethodNotAllowed).json("Method Not Allowed");

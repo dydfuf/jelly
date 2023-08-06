@@ -29,6 +29,7 @@ export default function MemoryList({ memories }: Props) {
           <p className="mr-auto p-8">{memory.content}</p>
         </div>
       ))}
+      {memories.length === 0 && <div>아직 추억이 없어요. 등록해봐요</div>}
     </div>
   );
 }

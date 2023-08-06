@@ -25,9 +25,9 @@ export default function ScheduleAddContainer() {
     const data = Object.fromEntries(new FormData(event.currentTarget));
     await createSchedule({
       ...data,
-      startTime: (data["startTime"] + "Z") as string,
-      endTime: data["endTime"] + "Z",
-      recurringEndTime: data["recurringEndTime"] + "Z",
+      startTime: data["startTime"] as string,
+      endTime: data["endTime"],
+      recurringEndTime: data["recurringEndTime"],
       allDay: data["allDay"] === "on",
     } as PostScheduleParams);
 
