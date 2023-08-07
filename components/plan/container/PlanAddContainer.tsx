@@ -18,8 +18,8 @@ export default function PlanAddContainer() {
     const data = Object.fromEntries(new FormData(event.currentTarget));
     await createPlan({
       ...data,
-      ...(data.startDate && { startDate: (data.startDate + "Z") as string }),
-      ...(data.endDate && { startDate: (data.endDate + "Z") as string }),
+      ...(data.startDate && { startDate: data.startDate as string }),
+      ...(data.endDate && { startDate: data.endDate as string }),
       isUndecided: data.isUndecided === "on",
     } as PostPlanParams);
 
