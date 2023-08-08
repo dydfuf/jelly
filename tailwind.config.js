@@ -93,6 +93,9 @@ module.exports = {
         red: {
           DEFAULT: "#FF4911",
         },
+        "red-50": {
+          DEFAULT: "#FCF2E9",
+        },
         "red-100": {
           DEFAULT: "#F8D6B3",
         },
