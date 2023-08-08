@@ -34,9 +34,9 @@ export default function MemoryAddContainer() {
   };
 
   return (
-    <>
+    <div className="flex flex-col pt-12 px-8 max-w-[640px] mx-auto">
       <Form.Root
-        className="w-full"
+        className="w-full flex flex-col gap-y-12"
         onSubmit={(event) => {
           handleSubmit(event);
 
@@ -46,7 +46,7 @@ export default function MemoryAddContainer() {
       >
         <Form.Field className="grid mb-10" name="date">
           <div className="flex items-baseline justify-between">
-            <Form.Label className="leading-35">날짜</Form.Label>
+            <Form.Label className="text-20 leading-30">날짜</Form.Label>
             <Form.Message className="text-12" match="valueMissing">
               날짜를 입력해주세요
             </Form.Message>
@@ -56,7 +56,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 "
               type="date"
               required
             />
@@ -64,7 +64,7 @@ export default function MemoryAddContainer() {
         </Form.Field>
         <Form.Field className="grid mb-10" name="location">
           <div className="flex items-baseline justify-between">
-            <Form.Label className="leading-35">장소</Form.Label>
+            <Form.Label className="text-20 leading-30">장소</Form.Label>
             <Form.Message className="text-12" match="valueMissing">
               장소를 입력해주세요
             </Form.Message>
@@ -74,61 +74,62 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
               required
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Field className="grid mb-10" name="photo">
-          <div className="flex items-baseline justify-between">
-            <Form.Label className="leading-35">사진</Form.Label>
-            <Form.Message className="text-12" match="valueMissing">
-              사진을 등록해주세요
-            </Form.Message>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
-              type="file"
-              accept="image/png, image/jpeg"
-              multiple
             />
           </Form.Control>
         </Form.Field>
         <Form.Field className="grid mb-10" name="title">
           <div className="flex items-baseline justify-between">
-            <Form.Label className="leading-35">제목</Form.Label>
+            <Form.Label className="text-20 leading-30">제목</Form.Label>
             <Form.Message className="text-12" match="valueMissing">
               제목을 입력해주세요
             </Form.Message>
           </div>
           <Form.Control asChild>
             <input
-              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
               required
             />
           </Form.Control>
         </Form.Field>
+        <Form.Field className="grid mb-10" name="photo">
+          <div className="flex items-baseline justify-between">
+            <Form.Label className="text-20 leading-30">사진</Form.Label>
+            <Form.Message className="text-12" match="valueMissing">
+              사진을 등록해주세요
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input
+              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
+              type="file"
+              accept="image/png, image/jpeg"
+              multiple
+            />
+          </Form.Control>
+        </Form.Field>
+
         <Form.Field className="grid mb-10" name="content">
           <div className="flex items-baseline justify-between">
-            <Form.Label className="leading-35">내용</Form.Label>
+            <Form.Label className="text-20 leading-30">내용</Form.Label>
             <Form.Message className="text-12" match="valueMissing">
               내용을 입력해주세요
             </Form.Message>
           </div>
           <Form.Control asChild>
             <textarea
-              className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-160 p-4 "
               required
             />
           </Form.Control>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="border-1 w-full">
+          <button className="text-28 tracking-widest mt-24 border-4 rounded-4 bg-purple-200 shadow-[4px_4px_0px_0px_#000] border-black w-full h-60">
             {isUploading || isLoading ? "등록중" : "등록하기"}
           </button>
         </Form.Submit>
       </Form.Root>
-    </>
+    </div>
   );
 }
