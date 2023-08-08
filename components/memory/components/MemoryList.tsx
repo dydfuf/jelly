@@ -11,7 +11,7 @@ export default function MemoryList({ memories }: Props) {
       {memories.map((memory) => (
         <div
           key={`${memory.date}-${memory.title}`}
-          className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000]"
+          className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000] bg-white"
         >
           <p className="font-bold text-24 tracking-wider">{memory.title}</p>
           <p className="ml-auto mr-12">{memory.location}</p>
