@@ -56,7 +56,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 "
+              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 appearance-none"
               type="date"
               required
             />
@@ -74,7 +74,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
+              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 appearance-none"
               required
             />
           </Form.Control>
@@ -88,7 +88,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
+              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 appearance-none	"
               required
             />
           </Form.Control>
@@ -102,7 +102,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <input
-              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4"
+              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 appearance-none"
               type="file"
               accept="image/png, image/jpeg"
               multiple
@@ -119,7 +119,7 @@ export default function MemoryAddContainer() {
           </div>
           <Form.Control asChild>
             <textarea
-              className="w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-160 p-4 "
+              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-160 p-4 appearance-none"
               required
             />
           </Form.Control>
