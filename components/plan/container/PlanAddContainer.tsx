@@ -42,7 +42,7 @@ export default function PlanAddContainer() {
           valueMissingString="제목을 입력해주세요"
         >
           <input
-            className="w-full min-w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+            className="w-full min-w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1 appearance-none"
             required
           />
         </Field>
@@ -66,7 +66,7 @@ export default function PlanAddContainer() {
               valueMissingString="시작 시간을 입력해주세요."
             >
               <input
-                className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1"
+                className="w-full inline-flex items-center justify-center rounded-4 text-white bg-slate-300 border-1 appearance-none	"
                 type="date"
                 required
               />
