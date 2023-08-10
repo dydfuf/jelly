@@ -11,7 +11,7 @@ export default function BottomNavigation() {
   const router = useRouter();
 
   return (
-    <div className="flex justify-between h-60 w-full items-center border-t-1 bg-white">
+    <div className="flex justify-between h-60 w-full items-center border-t-1 bg-white pb-safe">
       {BOTTOM_NAVIGATION_LISTS.map((bottomNavigation) => {
         const { href, icon, activeRegex } = bottomNavigation;
         return (

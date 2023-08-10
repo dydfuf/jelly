@@ -15,7 +15,7 @@ export default function useGetMemory() {
     state.initMemory,
   ]);
 
-  const { isLoading, data } = useQuery(
+  const { data, isFetching, refetch } = useQuery(
     ["memory", userId, groupId],
     () => getMemories(userId, groupId),
     {
@@ -31,7 +31,7 @@ export default function useGetMemory() {
     }
   );
 
-  return { isLoading, memories: data?.data };
+  return { isFetching, memories: data?.data, refetch };
 }
 
 export interface Memory {

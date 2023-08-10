@@ -10272,6 +10272,11 @@ tailwind-merge@^1.10.0:
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.14.0.tgz#e677f55d864edc6794562c63f5001f45093cdb8b"
   integrity sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==
 
+tailwindcss-safe-area@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-safe-area/-/tailwindcss-safe-area-0.3.0.tgz#f596b895ac6f3bae7cf1366da649a1370d2dadc0"
+  integrity sha512-FKsCmMOG+WU4FNfr60T6FiCQPBj9m4oCyHHQN0jJAiEXCk0H31HwBWs7In7v/W8hG8+qgLsrMaB+SX/mhxPECg==
+
 tailwindcss@^3.2.7:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.3.3.tgz#90da807393a2859189e48e9e7000e6880a736daf"

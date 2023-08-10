@@ -1,40 +1,46 @@
 import * as Form from "@radix-ui/react-form";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import usePostMemory from "hooks/memory/usePostMemory";
+import useDragScroll from "hooks/useDragScroll";
 import usePostCloudflareImage from "hooks/usePostCloudflareImage";
 
 export default function MemoryAddContainer() {
-  const { createMemory, isLoading } = usePostMemory();
-  const { uploadImage, isLoading: isUploading } = usePostCloudflareImage();
   const router = useRouter();
 
-  // 이미지를 업로드 한다.
-  // 업로드된 이미지 주소리스트를 넘겨준다.
+  const { createMemory, isLoading } = usePostMemory();
+  const { uploadImage, isLoading: isUploading } = usePostCloudflareImage();
+
+  const scrollRef = useDragScroll();
+
+  const [willUploadFileUrls, setWillUploadFileUrls] = useState<string[]>([]);
+
+  const handleWillUploadFileDeleteClick = (url: string) => {
+    const idx = willUploadFileUrls.indexOf(url);
+    setWillUploadFileUrls((prev) =>
+      prev.slice(0, idx).concat(prev.slice(idx + 1))
+    );
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const data = Object.fromEntries(new FormData(event.currentTarget));
-    const formData = new FormData(event.currentTarget);
-
-    const uploadedImageUrls = await uploadImage(
-      formData.getAll("photo") as File[]
-    );
 
     await createMemory({
       content: data.content as string,
       title: data.title as string,
       date: new Date(data.date as string) as Date,
       location: data.location as string,
-      uploadedImageUrls,
+      uploadedImageUrls: willUploadFileUrls,
     });
 
     router.push("/memory");
   };
 
   return (
-    <div className="flex flex-col pt-12 px-8 max-w-[640px] mx-auto">
+    <div className="flex flex-col pt-12 px-8 max-w-[640px] mx-auto pb-40">
       <Form.Root
         className="w-full flex flex-col gap-y-12"
         onSubmit={(event) => {
@@ -100,14 +106,56 @@ export default function MemoryAddContainer() {
               사진을 등록해주세요
             </Form.Message>
           </div>
-          <Form.Control asChild>
-            <input
-              className="w-full min-w-full rounded-4 text-black bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] h-40 p-4 appearance-none"
-              type="file"
-              accept="image/png, image/jpeg"
-              multiple
-            />
-          </Form.Control>
+          <div
+            // eslint-disable-next-line tailwindcss/no-custom-classname
+            className="px-8 w-full overflow-x-scroll hide-scrollbar"
+            ref={scrollRef}
+          >
+            <div className="w-max gap-x-20 flex mt-15">
+              {willUploadFileUrls.length > 0 &&
+                willUploadFileUrls.map((url) => (
+                  <div
+                    key={url}
+                    className="w-200 h-200 relative rounded-4 border-4 border-dashed border-black"
+                    onClick={() => handleWillUploadFileDeleteClick(url)}
+                  >
+                    <div className="bg-red-200 flex items-center justify-center rounded-full w-30 h-30 border-1 border-black absolute right-2 top-0 translate-x-1/2 -translate-y-1/2 z-[1000] shadow-[2px_2px_0px_0px_#000]">
+                      X
+                    </div>
+                    <Image src={url} fill alt="willUploadImage" />
+                  </div>
+                ))}
+              <div className="w-200 h-200 rounded-4 text-black bg-white border-4 border-dashed border-black p-4 appearance-none flex">
+                <label
+                  className="w-full h-full flex items-center justify-center"
+                  htmlFor="photo-input"
+                >
+                  <div className="whitespace-pre-line text-center">
+                    {isUploading
+                      ? "사진을 업로딩 중입니다."
+                      : "여기를 클릭하여\n 사진을 등록해보세요"}
+                  </div>
+                </label>
+                <Form.Control asChild>
+                  <input
+                    className="hidden"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    multiple
+                    id="photo-input"
+                    onChange={async (event) => {
+                      const files = Array.from(event.target.files as FileList);
+                      const uploadedImageUrls = await uploadImage(files);
+                      setWillUploadFileUrls((prev) => [
+                        ...prev,
+                        ...uploadedImageUrls,
+                      ]);
+                    }}
+                  />
+                </Form.Control>
+              </div>
+            </div>
+          </div>
         </Form.Field>
 
         <Form.Field className="grid mb-10" name="content">
@@ -126,7 +174,7 @@ export default function MemoryAddContainer() {
         </Form.Field>
         <Form.Submit asChild>
           <button className="text-28 tracking-widest mt-24 border-4 rounded-4 bg-purple-200 shadow-[4px_4px_0px_0px_#000] border-black w-full h-60">
-            {isUploading || isLoading ? "등록중" : "등록하기"}
+            {isLoading ? "등록중" : "등록하기"}
           </button>
         </Form.Submit>
       </Form.Root>
