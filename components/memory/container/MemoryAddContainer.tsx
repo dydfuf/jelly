@@ -107,6 +107,7 @@ export default function MemoryAddContainer() {
             </Form.Message>
           </div>
           <div
+            // eslint-disable-next-line tailwindcss/no-custom-classname
             className="px-8 w-full overflow-x-scroll hide-scrollbar"
             ref={scrollRef}
           >

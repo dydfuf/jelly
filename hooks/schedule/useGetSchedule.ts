@@ -15,7 +15,7 @@ export default function useGetSchedule() {
     state.initSchedule,
   ]);
 
-  const { isLoading, data } = useQuery(
+  const { isFetching, refetch, data } = useQuery(
     ["schedule", userId, groupId],
     () => getSchedules(userId, groupId),
     {
@@ -31,7 +31,7 @@ export default function useGetSchedule() {
     }
   );
 
-  return { isLoading, schedules: data?.data };
+  return { isFetching, refetch, schedules: data?.data };
 }
 
 export interface Schedule {
