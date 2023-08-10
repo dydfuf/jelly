@@ -176,7 +176,7 @@ module.exports = {
       lineHeight,
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-safe-area")],
   future: {
     hoverOnlyWhenSupported: true,
   },
