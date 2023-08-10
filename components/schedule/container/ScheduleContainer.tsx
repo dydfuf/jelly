@@ -4,7 +4,7 @@ import ScheduleCalendar from "../components/ScheduleCalendar";
 import ScheduleList from "../components/ScheduleList";
 
 export default function ScheduleContainer() {
-  const { schedules } = useGetSchedule();
+  const { isFetching, refetch, schedules } = useGetSchedule();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   if (!schedules) {
@@ -17,6 +17,8 @@ export default function ScheduleContainer() {
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         events={schedules}
+        isFetching={isFetching}
+        refetch={refetch}
       />
       <ScheduleList schedules={schedules} selectedDate={selectedDate} />
     </div>

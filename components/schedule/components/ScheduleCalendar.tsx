@@ -12,12 +12,16 @@ interface Props {
   selectedDate: Date;
   setSelectedDate: (date: Date) => void;
   events: Schedule[];
+  isFetching: boolean;
+  refetch: () => void;
 }
 
 export default function ScheduleCalendar({
   selectedDate,
   setSelectedDate,
   events,
+  isFetching,
+  refetch,
 }: Props) {
   const [calendarType, setCalendarType] = useState<CalendarType>("week");
   const initialView = calendarType === "week" ? "dayGridWeek" : "dayGridMonth";
@@ -38,7 +42,13 @@ export default function ScheduleCalendar({
   return (
     // eslint-disable-next-line tailwindcss/no-custom-classname
     <div className="flex flex-col schedule">
-      <div className="flex ml-auto">
+      <div className="h-30 flex w-full">
+        <div className="h-30 mr-auto pl-20 flex items-center">
+          {isFetching && "일정 가져오는 중 ..."}
+          {!isFetching && (
+            <div onClick={() => refetch()}>일정 업데이트하기</div>
+          )}
+        </div>
         <button
           className={cn("w-60 border-1 rounded-6", {
             "bg-slate-400": calendarType === "week",
