@@ -10,7 +10,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <div
       className={cn(
-        "flex flex-col h-[100dvh] overflow-hidden pb-safe",
+        "flex flex-col h-[100dvh] overflow-hidden",
         BMJUA.className
       )}
     >
