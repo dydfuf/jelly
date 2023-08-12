@@ -31,7 +31,7 @@ export default function useGetMemory() {
     }
   );
 
-  return { isFetching, memories: data?.data, refetch };
+  return { isFetching, refetch };
 }
 
 export interface Memory {
@@ -41,6 +41,7 @@ export interface Memory {
   content: string;
   date: string;
   userId: string;
+  id: string;
 }
 const getMemories = (userId: string, groupId: string) => {
   return axios.get<Memory[]>(`/api/user/${userId}/group/${groupId}/memory`);

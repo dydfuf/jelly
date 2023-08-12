@@ -1,4 +1,5 @@
 import Image from "next/image";
+import useDeleteMemory from "hooks/memory/useDeleteMemory";
 import { Memory } from "hooks/memory/useGetMemory";
 
 interface Props {
@@ -6,6 +7,12 @@ interface Props {
 }
 
 export default function MemoryList({ memories }: Props) {
+  const { deleteMemory } = useDeleteMemory();
+
+  const handleMemoryDelete = (memoryId: string) => {
+    deleteMemory({ memoryId });
+  };
+
   return (
     <div className="mx-8 mt-20 pb-40 gap-y-20 flex flex-col">
       {memories.map((memory) => (
@@ -13,6 +20,14 @@ export default function MemoryList({ memories }: Props) {
           key={`${memory.date}-${memory.title}`}
           className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000] bg-white"
         >
+          <div
+            className="ml-auto mt-4 mr-6 bg-red-200 flex items-center justify-center rounded-full w-20 h-20 border-1 border-black shadow-[2px_2px_0px_0px_#000]"
+            onClick={() => {
+              handleMemoryDelete(memory.id);
+            }}
+          >
+            X
+          </div>
           <p className="font-bold text-24 tracking-wider">{memory.title}</p>
           <p className="ml-auto mr-12">{memory.location}</p>
           <div className="flex gap-10 flex-wrap">

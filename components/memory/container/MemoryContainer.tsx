@@ -2,11 +2,14 @@ import { isSameDay } from "date-fns";
 import { useState } from "react";
 import MemoryCalendar from "components/memory/components/MemoryCalendar";
 import useGetMemory from "hooks/memory/useGetMemory";
+import useMemoryState from "stores/memory";
 import MemoryList from "../components/MemoryList";
 
 export default function MemoryContainer() {
-  const { memories, isFetching, refetch } = useGetMemory();
+  const { isFetching, refetch } = useGetMemory();
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const memories = useMemoryState((state) => state.memories);
 
   const selectedDateMemory = memories?.filter((memory) =>
     isSameDay(new Date(memory.date), selectedDate)
