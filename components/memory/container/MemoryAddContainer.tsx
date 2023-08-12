@@ -116,13 +116,19 @@ export default function MemoryAddContainer() {
                 willUploadFileUrls.map((url) => (
                   <div
                     key={url}
-                    className="w-200 h-200 relative rounded-4 border-4 border-dashed border-black"
+                    className="w-200 h-200 relative rounded-4 border-4 border-dashed border-black flex"
                     onClick={() => handleWillUploadFileDeleteClick(url)}
                   >
                     <div className="bg-red-200 flex items-center justify-center rounded-full w-30 h-30 border-1 border-black absolute right-2 top-0 translate-x-1/2 -translate-y-1/2 z-[1000] shadow-[2px_2px_0px_0px_#000]">
                       X
                     </div>
-                    <Image src={url} fill alt="willUploadImage" />
+                    <Image
+                      src={url}
+                      className="object-contain"
+                      width={300}
+                      height={300}
+                      alt="willUploadImage"
+                    />
                   </div>
                 ))}
               <div className="w-200 h-200 rounded-4 text-black bg-white border-4 border-dashed border-black p-4 appearance-none flex">
