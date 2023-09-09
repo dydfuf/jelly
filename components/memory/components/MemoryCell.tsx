@@ -34,7 +34,7 @@ export default function MemoryCell(props: Props) {
         {dayNumberText.replace("일", "")}
       </span>
       <div
-        className={cn("flex w-full px-4 gap-x-2", {
+        className={cn("flex w-full h-full px-4 gap-x-2", {
           "justify-center": images.length === 1,
         })}
       >
@@ -45,8 +45,8 @@ export default function MemoryCell(props: Props) {
               src={image}
               width={0}
               height={0}
-              sizes="100vw"
-              className="h-auto w-1/2 rounded-4"
+              sizes="100vh"
+              className="w-auto h-1/2 rounded-4"
               alt="memory-image"
             />
           ))}
