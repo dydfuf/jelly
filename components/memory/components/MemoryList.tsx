@@ -1,11 +1,16 @@
 import Image from "next/image";
+import { useState } from "react";
 import { Memory } from "hooks/memory/useGetMemory";
+import MemoryImageDialog from "./MemoryImageDialog";
 
 interface Props {
   memories: Memory[];
 }
 
 export default function MemoryList({ memories }: Props) {
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
+  const [selectedImageSrc, setSelectedImageSrc] = useState("");
+
   return (
     <div className="mx-8 mt-20 pb-40 gap-y-20 flex flex-col">
       {memories.map((memory) => (
@@ -23,6 +28,10 @@ export default function MemoryList({ memories }: Props) {
                 alt="uploaded image"
                 width={100}
                 height={100}
+                onClick={() => {
+                  setImageDialogOpen(true);
+                  setSelectedImageSrc(url);
+                }}
               />
             ))}
           </div>
@@ -36,6 +45,11 @@ export default function MemoryList({ memories }: Props) {
           우측 상단의 + 아이콘을 클릭하여 추억을 등록할 수 있어요.
         </div>
       )}
+      <MemoryImageDialog
+        open={imageDialogOpen}
+        setOpen={setImageDialogOpen}
+        imageSrc={selectedImageSrc}
+      />
     </div>
   );
 }
