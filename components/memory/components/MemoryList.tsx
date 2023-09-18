@@ -16,11 +16,11 @@ export default function MemoryList({ memories }: Props) {
       {memories.map((memory) => (
         <div
           key={`${memory.date}-${memory.title}`}
-          className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000] bg-white"
+          className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000] bg-white gap-y-8"
         >
           <p className="font-bold text-24 tracking-wider">{memory.title}</p>
           <p className="ml-auto mr-12">{memory.location}</p>
-          <div className="flex gap-10 flex-wrap">
+          <div className="flex gap-8 flex-wrap items-center justify-center">
             {memory.uploadedImageUrls.map((url) => (
               <Image
                 key={url}
@@ -32,6 +32,7 @@ export default function MemoryList({ memories }: Props) {
                   setImageDialogOpen(true);
                   setSelectedImageSrc(url);
                 }}
+                className="rounded-4 border-1 border-black"
               />
             ))}
           </div>
