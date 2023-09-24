@@ -34,6 +34,8 @@ export default async function handler(
         );
 
         await webPush.sendNotification(
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           subscription,
           JSON.stringify(notificationPayload),
           {
