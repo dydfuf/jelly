@@ -11,20 +11,8 @@ export default function ScheduleContainer() {
     return <div>No schedules</div>;
   }
 
-  async function showNotification() {
-    const result = await Notification.requestPermission();
-    if (result === "granted") {
-      console.log({ result });
-      const noti = new Notification("Hello!", {
-        body: "It’s me.",
-      });
-      console.log(noti);
-    }
-  }
-
   return (
     <div className="flex flex-col pt-12 px-8 max-w-[640px] mx-auto">
-      <button onClick={showNotification}>노티</button>
       <ScheduleCalendar
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
