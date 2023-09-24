@@ -9,7 +9,17 @@ import { env } from "./env.mjs";
 const config = withPlugins(
   [
     [withBundleAnalyzer({ enabled: env.ANALYZE })],
-    [withPWA, { pwa: { dest: "public" } }],
+    [
+      withPWA,
+      {
+        pwa: {
+          dest: "public",
+          customWorkerDir: "service-worker",
+          register: true,
+          skipWaiting: true,
+        },
+      },
+    ],
   ],
   {
     reactStrictMode: true,
