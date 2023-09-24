@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import webPush from "web-push";
-import { env } from "env.mjs";
 import { getSubscriptions } from "utils/saveSubscription";
 
 export default async function handler(
