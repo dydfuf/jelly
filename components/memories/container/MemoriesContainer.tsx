@@ -7,8 +7,8 @@ export default function MemoriesContainer() {
 
   const sortedMemories =
     memories.sort((a, b) => {
-      if (isBefore(new Date(a.date), new Date(b.date))) {
-        return 1;
+      if (isBefore(new Date(b.date), new Date(a.date))) {
+        return -1;
       }
       return 0;
     }) || [];
