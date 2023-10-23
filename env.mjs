@@ -18,6 +18,8 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     CLOUDFLARE_API_KEY: z.string().min(1),
     CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
+    WEB_PUSH_PUBLIC_KEY: z.string().min(1),
+    WEB_PUSH_PRIVATE_KEY: z.string().min(1),
   },
   client: {},
   runtimeEnv: {
@@ -33,5 +35,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     CLOUDFLARE_API_KEY: process.env.CLOUDFLARE_API_KEY,
     CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
+    WEB_PUSH_PUBLIC_KEY: process.env.WEB_PUSH_PUBLIC_KEY,
+    WEB_PUSH_PRIVATE_KEY: process.env.WEB_PUSH_PRIVATE_KEY,
   },
 });
