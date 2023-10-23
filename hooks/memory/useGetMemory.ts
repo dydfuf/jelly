@@ -35,6 +35,7 @@ export default function useGetMemory() {
 }
 
 export interface Memory {
+  id: string;
   uploadedImageUrls: string[];
   title: string;
   location: string;
