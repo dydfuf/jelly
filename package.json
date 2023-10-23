@@ -68,6 +68,7 @@
     "rrule": "^2.7.2",
     "sass": "^1.64.0",
     "tailwind-merge": "^1.10.0",
+    "web-push": "^3.6.6",
     "zod": "^3.21.4",
     "zustand": "^4.3.9"
   },
@@ -87,6 +88,7 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/rrule": "^2.2.9",
+    "@types/web-push": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.54.1",
     "autoprefixer": "^10.4.14",
