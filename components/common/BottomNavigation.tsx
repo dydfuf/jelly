@@ -1,9 +1,4 @@
-import {
-  CalendarIcon,
-  HamburgerMenuIcon,
-  HomeIcon,
-  RocketIcon,
-} from "@radix-ui/react-icons";
+import { CardStackIcon, HomeIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -39,21 +34,27 @@ const BOTTOM_NAVIGATION_LISTS = [
     activeRegex: /^\/memory/,
   },
   {
-    href: "/schedule",
-    icon: <CalendarIcon width={30} height={30} />,
-    label: "일정",
-    activeRegex: /^\/schedule/,
+    href: "/memories",
+    icon: <CardStackIcon width={30} height={30} />,
+    label: "추억들",
+    activeRegex: /^\/memories/,
   },
-  {
-    href: "/plan",
-    icon: <RocketIcon width={30} height={30} />,
-    label: "계획",
-    activeRegex: /^\/plan/,
-  },
-  {
-    href: "/settings",
-    icon: <HamburgerMenuIcon width={30} height={30} />,
-    label: "설정",
-    activeRegex: /^\/settings/,
-  },
+  // {
+  //   href: "/schedule",
+  //   icon: <CalendarIcon width={30} height={30} />,
+  //   label: "일정",
+  //   activeRegex: /^\/schedule/,
+  // },
+  // {
+  //   href: "/plan",
+  //   icon: <RocketIcon width={30} height={30} />,
+  //   label: "계획",
+  //   activeRegex: /^\/plan/,
+  // },
+  // {
+  //   href: "/settings",
+  //   icon: <HamburgerMenuIcon width={30} height={30} />,
+  //   label: "설정",
+  //   activeRegex: /^\/settings/,
+  // },
 ];

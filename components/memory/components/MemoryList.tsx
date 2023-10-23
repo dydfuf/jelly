@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import Image from "next/image";
 import { useState } from "react";
 import { Memory } from "hooks/memory/useGetMemory";
@@ -5,9 +6,10 @@ import MemoryImageDialog from "./MemoryImageDialog";
 
 interface Props {
   memories: Memory[];
+  showDate?: boolean;
 }
 
-export default function MemoryList({ memories }: Props) {
+export default function MemoryList({ memories, showDate }: Props) {
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
   const [selectedImageSrc, setSelectedImageSrc] = useState("");
 
@@ -18,6 +20,11 @@ export default function MemoryList({ memories }: Props) {
           key={`${memory.date}-${memory.title}`}
           className="w-full border-4 border-black flex flex-col items-center shadow-[4px_4px_0px_0px_#000] bg-white gap-y-8"
         >
+          {showDate && (
+            <p className="mr-auto pl-8 text-12">
+              {format(new Date(memory.date), "yy년 MM월 dd일")}의 우리 ❤️
+            </p>
+          )}
           <p className="font-bold text-24 tracking-wider">{memory.title}</p>
           <p className="ml-auto mr-12">{memory.location}</p>
           <div className="flex gap-8 flex-wrap items-center justify-center">
