@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Memory } from "hooks/memory/useGetMemory";
 import MemoryImageDialog from "./MemoryImageDialog";
@@ -44,6 +45,7 @@ export default function MemoryList({ memories, showDate }: Props) {
             ))}
           </div>
           <p className="mr-auto p-8 whitespace-pre-wrap">{memory.content}</p>
+          <Link href={`/memory/${memory.id}/edit`}>수정하기</Link>
         </div>
       ))}
       {memories.length === 0 && (
