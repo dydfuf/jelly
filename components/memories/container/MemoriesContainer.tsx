@@ -5,12 +5,18 @@ import useGetMemory from "hooks/memory/useGetMemory";
 export default function MemoriesContainer() {
   const { memories } = useGetMemory();
 
-  const s = memories.sort((a, b) => {
-    if (isBefore(new Date(a.date), new Date(b.date))) {
-      return 1;
-    }
-    return 0;
-  });
+  const sortedMemories =
+    memories.sort((a, b) => {
+      if (isBefore(new Date(a.date), new Date(b.date))) {
+        return 1;
+      }
+      return 0;
+    }) || [];
 
-  return <MemoryList memories={s || []} showDate />;
+  return (
+    <div>
+      <p className="text-center">{`총 ${sortedMemories.length}개의 추억`}</p>
+      <MemoryList memories={sortedMemories} showDate />
+    </div>
+  );
 }
