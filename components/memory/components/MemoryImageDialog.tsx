@@ -28,20 +28,23 @@ export default function MemoryImageDialog({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Overlay className="fixed z-[9999] inset-0 data-[state=open]:bg-black/[0.7]" />
-      <Dialog.Content className="fixed z-[9999] left-1/2 top-1/2 w-full h-[-webkit-fill-available] -translate-x-1/2 -translate-y-1/2 bg-transparent focus:outline-none px-20">
+      <Dialog.Content className="fixed z-[9999] left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 bg-transparent focus:outline-none px-20">
         <Swiper
           className="w-full h-full"
           initialSlide={findDefaultImageIdx}
           pagination={{ type: "fraction" }}
           onSlideChange={({ snapIndex }) => setCurrentIdx(snapIndex + 1)}
+          wrapperClass="items-center"
         >
           {imageSrcList.map((image) => (
             <SwiperSlide key={image}>
               <Image
                 src={image}
-                fill
+                width={0}
+                height={0}
+                sizes="100vw"
                 alt="image-dialog"
-                className="object-contain"
+                className="object-contain w-full h-full"
                 priority
               />
             </SwiperSlide>
