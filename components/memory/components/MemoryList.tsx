@@ -13,6 +13,9 @@ interface Props {
 export default function MemoryList({ memories, showDate }: Props) {
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
   const [selectedImageSrc, setSelectedImageSrc] = useState("");
+  const [selectedDateImageSrcList, setSelectedDateImageSrcList] = useState<
+    Array<string>
+  >([]);
 
   return (
     <div className="mx-8 mt-20 pb-40 gap-y-20 flex flex-col">
@@ -39,6 +42,7 @@ export default function MemoryList({ memories, showDate }: Props) {
                 onClick={() => {
                   setImageDialogOpen(true);
                   setSelectedImageSrc(url);
+                  setSelectedDateImageSrcList(memory.uploadedImageUrls);
                 }}
                 className="rounded-4 border-1 border-black"
               />
@@ -59,6 +63,7 @@ export default function MemoryList({ memories, showDate }: Props) {
         open={imageDialogOpen}
         setOpen={setImageDialogOpen}
         imageSrc={selectedImageSrc}
+        imageSrcList={selectedDateImageSrcList}
       />
     </div>
   );
