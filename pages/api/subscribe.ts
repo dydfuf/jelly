@@ -8,7 +8,7 @@ export default async function handler(
   if (req.method === "POST") {
     console.log("==================");
     console.log("/subscript handler");
-    const subscription = req.body;
+    const { subscription } = req.body;
     console.log({ subscription });
 
     try {

@@ -17,9 +17,11 @@ export const sendNotification = ({
   console.log("sendNotification method");
   console.log({ subscription });
   console.log(options);
-  webpush.sendNotification(
+  console.log(subscription.endpoint);
+  const s = webpush.sendNotification(
     subscription,
     JSON.stringify({ title: options, body: options.body })
   );
+  console.log({ s });
   console.log("sendNotification end");
 };
