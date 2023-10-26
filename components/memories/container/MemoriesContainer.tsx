@@ -15,8 +15,34 @@ export default function MemoriesContainer() {
 
   return (
     <div>
+      <button onClick={pushManager}>subscribe</button>
       <p className="text-center">{`총 ${sortedMemories.length}개의 추억`}</p>
       <MemoryList memories={sortedMemories} showDate />
     </div>
   );
 }
+
+const pushManager = async () => {
+  const registration = await navigator.serviceWorker.getRegistration();
+
+  let subscription = await registration?.pushManager.getSubscription();
+  if (subscription) {
+    subscription = await registration?.pushManager.subscribe({
+      applicationServerKey:
+        "BPF6RLD_wSj51GxSQPa4rm4xVCV5Jd45JjVN6CooFFNqEoUOkbfOgTej4Uf1tZHbFkusiflLSP5KH2jVX97383k",
+      userVisibleOnly: true,
+    });
+  }
+
+  const response = await fetch("/api/subscribe", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ subscription }),
+  });
+
+  console.log("postSubscription", { response });
+
+  return;
+};
