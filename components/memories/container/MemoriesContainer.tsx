@@ -25,10 +25,19 @@ export default function MemoriesContainer() {
 
 const pushManager = async () => {
   const registration = await navigator.serviceWorker.getRegistration();
+  if (!registration) {
+    alert("no registration");
+    return;
+  }
 
-  let subscription = await registration?.pushManager.getSubscription();
+  if (!registration.pushManager) {
+    alert("no push manager");
+    return;
+  }
+
+  let subscription = await registration.pushManager.getSubscription();
   if (subscription) {
-    subscription = await registration?.pushManager.subscribe({
+    subscription = await registration.pushManager.subscribe({
       applicationServerKey:
         "BPF6RLD_wSj51GxSQPa4rm4xVCV5Jd45JjVN6CooFFNqEoUOkbfOgTej4Uf1tZHbFkusiflLSP5KH2jVX97383k",
       userVisibleOnly: true,
