@@ -1,26 +1,29 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "env.mjs";
-import { saveSubscription } from "utils/saveSubscription";
-
-const publicVapidKey = env.WEB_PUSH_PUBLIC_KEY;
-const privateVapidKey = env.WEB_PUSH_PRIVATE_KEY;
+import { sendNotification } from "server/utils/webpush";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    console.log("==================");
+    console.log("/subscript handler");
     const subscription = req.body;
-    console.log("subscription");
+    console.log({ subscription });
 
     try {
-      await saveSubscription(subscription);
-      res.status(201).json({ message: "Subscription saved" });
+      console.log("before sendNotification");
+      sendNotification({
+        subscription,
+        options: { title: "테스트에용", body: "테스트 입니다용" },
+      });
+      console.log("end sendNotification");
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Failed to save subscription" });
+      res.status(500).json({ message: "Failed to send subscription" });
     }
+    res.status(200).json("good!");
   } else {
     res.status(405).json({ message: "Method not allowed" });
   }
+  console.log("==================");
 }
