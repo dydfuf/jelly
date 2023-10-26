@@ -36,12 +36,14 @@ const pushManager = async () => {
   }
 
   let subscription = await registration.pushManager.getSubscription();
-  if (subscription) {
+  console.log("firstsubscript", subscription);
+  if (!subscription) {
     subscription = await registration.pushManager.subscribe({
       applicationServerKey:
         "BPF6RLD_wSj51GxSQPa4rm4xVCV5Jd45JjVN6CooFFNqEoUOkbfOgTej4Uf1tZHbFkusiflLSP5KH2jVX97383k",
       userVisibleOnly: true,
     });
+    console.log("second", subscription);
   }
 
   const response = await fetch("/api/subscribe", {

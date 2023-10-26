@@ -13,7 +13,7 @@ export default async function handler(
 
     try {
       console.log("before sendNotification");
-      sendNotification({
+      await sendNotification({
         subscription,
         options: { title: "테스트에용", body: "테스트 입니다용" },
       });

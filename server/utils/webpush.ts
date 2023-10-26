@@ -7,7 +7,7 @@ webpush.setVapidDetails(
   "fJzg8Ae9EzqgwQgX1GE6_xxfZ1Ksz6RAA9clblDjq1k"
 );
 
-export const sendNotification = ({
+export const sendNotification = async ({
   subscription,
   options,
 }: {
@@ -18,7 +18,7 @@ export const sendNotification = ({
   console.log({ subscription });
   console.log(options);
   console.log(subscription.endpoint);
-  const s = webpush.sendNotification(
+  const s = await webpush.sendNotification(
     subscription,
     JSON.stringify({ title: options, body: options.body })
   );
