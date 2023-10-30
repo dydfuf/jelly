@@ -44,7 +44,7 @@ export default function MemoryImageDialog({
                 height={0}
                 sizes="100vw"
                 alt="image-dialog"
-                className="object-contain w-full h-full"
+                className="object-contain w-full h-full max-h-[80vh]"
                 priority
               />
             </SwiperSlide>
