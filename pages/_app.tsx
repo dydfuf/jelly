@@ -8,12 +8,12 @@ import AppProvider from "components/common/Provider/AppProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    if (!("serviceWorker" in navigator)) {
-      return;
-    }
-
     // service worker를 등록합니다.
-    navigator.serviceWorker.register("./service-worker.js");
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => console.log("scope is: ", registration.scope));
+    }
 
     if (!("Notification" in window)) {
       return;

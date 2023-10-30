@@ -19,6 +19,7 @@ function log(...args) {
     log("push", { event });
 
     const message = event.data?.json();
+    log("push message", { message });
     event.waitUntil(
       self.registration.showNotification(message.title, {
         body: message.body,
@@ -28,7 +29,7 @@ function log(...args) {
 
   self.addEventListener("notificationclick", (event) => {
     log("notificationclick", { event });
-    self.clients.openWindow("https://github.com/leegeunhyeok/web-push");
+    self.clients.openWindow("/memory");
   });
   // eslint-disable-next-line no-restricted-globals
 })(self);
