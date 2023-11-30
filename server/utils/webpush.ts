@@ -14,16 +14,12 @@ export const sendNotification = async ({
   subscription: webpush.PushSubscription;
   options: { title: string; body: string; url?: string };
 }) => {
-  try {
-    await webpush.sendNotification(
-      subscription,
-      JSON.stringify({
-        title: options.title,
-        body: options.body,
-        url: options.url,
-      })
-    );
-  } catch (e) {
-    console.log(e);
-  }
+  await webpush.sendNotification(
+    subscription,
+    JSON.stringify({
+      title: options.title,
+      body: options.body,
+      url: options.url,
+    })
+  );
 };
