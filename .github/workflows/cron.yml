@@ -3,7 +3,7 @@ name: cron
 on:
   schedule:
     - cron: "0 22 * * *"
-  dispatch_workflow:
+  workflow_dispatch:
 
 jobs:
   cron:
