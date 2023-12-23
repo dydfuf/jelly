@@ -104,21 +104,25 @@ export default async function handler(
         },
       });
 
-      // 3. 해당 정보를 통해 sendnotification을 호출합니다.
-      for (const subs of pushSubscription) {
-        await sendNotification({
-          subscription: JSON.parse(
-            subs.subscription
-          ) as unknown as webpush.PushSubscription,
-          options: {
-            title: "내사랑 젤리가 젤리에 글을 등록했어요! 🪼",
-            body: `${format(
-              new Date(date),
-              "MM월 dd일"
-            )}추억을 등록했어요!\n확인하러 가볼까요~?❤️`,
-            url: `/memory/${format(new Date(date), "yyyy-MM-dd")}`,
-          },
-        });
+      try {
+        // 3. 해당 정보를 통해 sendnotification을 호출합니다.
+        for (const subs of pushSubscription) {
+          await sendNotification({
+            subscription: JSON.parse(
+              subs.subscription
+            ) as unknown as webpush.PushSubscription,
+            options: {
+              title: "내사랑 젤리가 젤리에 글을 등록했어요! 🪼",
+              body: `${format(
+                new Date(date),
+                "MM월 dd일"
+              )}추억을 등록했어요!\n확인하러 가볼까요~?❤️`,
+              url: `/memory/${format(new Date(date), "yyyy-MM-dd")}`,
+            },
+          });
+        }
+      } catch (e) {
+        console.log(e);
       }
     }
 
