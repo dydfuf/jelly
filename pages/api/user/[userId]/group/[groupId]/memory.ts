@@ -104,9 +104,9 @@ export default async function handler(
         },
       });
 
-      try {
-        // 3. 해당 정보를 통해 sendnotification을 호출합니다.
-        for (const subs of pushSubscription) {
+      // 3. 해당 정보를 통해 sendnotification을 호출합니다.
+      for (const subs of pushSubscription) {
+        try {
           await sendNotification({
             subscription: JSON.parse(
               subs.subscription
@@ -120,9 +120,9 @@ export default async function handler(
               url: `/memory/${format(new Date(date), "yyyy-MM-dd")}`,
             },
           });
+        } catch (e) {
+          console.log(e);
         }
-      } catch (e) {
-        console.log(e);
       }
     }
 
